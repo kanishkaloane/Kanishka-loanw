@@ -3,67 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>පුද්ගලික ණය පහසුකම් - අයදුම්පත</title>
+    <title>Kanishka Loan Service - ණය අයදුම්පත</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            color: #333;
         }
         .container {
+            max-width: 500px;
             background: #ffffff;
+            margin: 0 auto;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 520px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         h2 {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #e67e22;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        /* පළමු පිටුවේ පෙන්වන කොන්දේසි පෙට්ටිය */
-        .terms-box {
-            background-color: #e8f4fd;
-            border-left: 4px solid #3498db;
-            padding: 15px;
+            color: #075e54;
             margin-bottom: 25px;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-        .terms-box h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
-            color: #2980b9;
-        }
-        .terms-box ul {
-            margin: 0;
-            padding-left: 18px;
-        }
-        .terms-box li {
-            margin-bottom: 8px;
-        }
-        .highlight {
-            background-color: #fff3cd;
-            padding: 3px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-            color: #856404;
         }
         .form-group {
             margin-bottom: 15px;
@@ -71,140 +31,114 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #333;
-            font-weight: 600;
+            font-weight: bold;
+            color: #555;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 14px;
             box-sizing: border-box;
         }
         button {
             width: 100%;
-            background-color: #27ae60;
+            background-color: #25d366;
             color: white;
             border: none;
             padding: 12px;
-            font-size: 18px;
+            font-size: 16px;
+            font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
             margin-top: 10px;
             transition: background 0.3s;
         }
         button:hover {
-            background-color: #219653;
+            background-color: #1ebe5d;
         }
         #success-message {
             display: none;
             text-align: center;
-            color: #27ae60;
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
             font-weight: bold;
-            font-size: 18px;
             margin-top: 20px;
-            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>💰 පුද්ගලික ණය පහසුකම්</h2>
-    <div class="subtitle">ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ණය පහසුකම් ලබාගන්න</div>
-
-    <!-- පළමු පිටුවේ දැක්වෙන කොන්දේසි සහ විස්තර -->
-    <div class="terms-box">
-        <h3>📌 අවශ්‍ය දේවල් සහ කොන්දේසි:</h3>
-        <ul>
-            <li><strong>අවශ්‍ය ලේඛන:</strong> ජාතික හැඳුනුම්පත (ID Card) හෝ පාස්පෝට් එකේ ෆොටෝ 2ක් සහ ස්ථීර පදිංචි ලිපිනය.</li>
-            <li><strong>සේවා ගාස්තු විස්තර (Service Charge):</strong>
-                <br>• ලක්ෂ 1 – රු. 5,500
-                <br>• ලක්ෂ 2 – රු. 11,000
-                <br>• ලක්ෂ 5 – රු. 27,500
-                <br>• ලක්ෂ 10 – රු. 55,000
-                <br>• ලක්ෂ 20 – රු. 110,000
-                <br>• ලක්ෂ 30 – රු. 175,000
-                <br>• ලක්ෂ 50 – රු. 275,000
-            </li>
-            <li><span class="highlight">⚠️ සේවා චාර්ජ් එක අනිවාර්යයෙන් ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. සේවා ගාස්තුව ඩිපොසිට් කර පැය 2කින් ණය මුදල ලබාගත හැක.</span></li>
-            <li><strong>ගෙවීම් කොන්දේසි:</strong> අවුරුදු 4ක් ඇතුළත සම්පූර්ණයෙන් ගෙවිය යුතුයි. මාසික වාරික අනිවාර්ය නැත; ඔබට හැකි විදිහට ගෙවන්න පුළුවන්.</li>
-            <li>අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට 10%ක අමතර මුදලක් ගෙවිය යුතුයි.</li>
-            <li>🔹 අපි මේ සියලු කටයුතු Online හරහාම කරන පැහැදිලි හා විශ්වාසදායක සේවාවක් සපයන්නෙමු.</li>
-        </ul>
-    </div>
-
-    <!-- අයදුම්පත් පෝරමය -->
-    <form id="loanForm" onsubmit="submitLoanForm(event)">
-        
+    <h2>Kanishka Loan Service</h2>
+    
+    <form id="loanForm" action="https://formspree.io/f/xvkopknb" method="POST">
         <div class="form-group">
-            <label for="name">සම්පූර්ණ නම:</label>
-            <input type="text" id="name" required placeholder="ඔබගේ නම ඇතුළත් කරන්න">
+            <label for="fullName">සම්පූර්ණ නම:</label>
+            <input type="text" id="fullName" name="fullName" required>
         </div>
 
         <div class="form-group">
-            <label for="phone1">ප්‍රධාන දුරකථන අංකය:</label>
-            <input type="tel" id="phone1" required placeholder="07xxxxxxxx">
+            <label for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
+            <input type="text" id="nic" name="nic" required>
         </div>
 
         <div class="form-group">
-            <label for="phone2">දෙවන දුරකථන අංකය:</label>
-            <input type="tel" id="phone2" required placeholder="07xxxxxxxx">
+            <label for="phone">දුරකථන අංකය:</label>
+            <input type="tel" id="phone" name="phone" required>
         </div>
 
         <div class="form-group">
-            <label for="nic">ජාතික හැඳුනුම්පත හෝ පාස්පෝට් අංකය:</label>
-            <input type="text" id="nic" required placeholder="அංකය ඇතුළත් කරන්න">
+            <label for="amount">අවශ්‍ය ණය මුදල (රු.):</label>
+            <input type="number" id="amount" name="amount" required>
         </div>
 
         <div class="form-group">
-            <label for="address">ස්ථීර පදිංචි ලිපිනය:</label>
-            <input type="text" id="address" required placeholder="ඔබගේ ලිපිනය">
+            <label for="bank">බැංකුව සහ ශාඛාව:</label>
+            <input type="text" id="bank" name="bank" required>
         </div>
 
         <div class="form-group">
-            <label for="amount">ඉල්ලුම් කරන ණය මුදල (රු.):</label>
-            <input type="number" id="amount" required placeholder="උදා: 100000">
+            <label for="accountNo">බැංකු ගිණුම් අංකය:</label>
+            <input type="text" id="accountNo" name="accountNo" required>
         </div>
 
-        <div class="form-group">
-            <label for="bank">අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
-            <input type="text" id="bank" required placeholder="බැංකු විස්තර මෙහි ලියන්න">
-        </div>
-
-        <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
+        <button type="submit">අයදුම්පත යොමු කරන්න</button>
     </form>
 
     <div id="success-message">
-        ✅ ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී!<br>
-        ස්තුතියි! අපි ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
+        ස්තුතියි! ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී. අපි ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
     </div>
 </div>
 
 <script>
-    function submitLoanForm(event) {
-        event.preventDefault();
+    const form = document.getElementById('loanForm');
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
         
-        const name = document.getElementById('name').value;
-        const phone1 = document.getElementById('phone1').value;
-        const phone2 = document.getElementById('phone2').value;
-        const nic = document.getElementById('nic').value;
-        const address = document.getElementById('address').value;
-        const amount = document.getElementById('amount').value;
-        const bank = document.getElementById('bank').value;
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        const message = `නව ණය අයදුම්පතක්!\n\nනම: ${name}\nප්‍රධාන දුරකථන: ${phone1}\nදෙවන දුරකථන: ${phone2}\nNIC/Passport: ${nic}\nලිපිනය: ${address}\nඉල්ලුම් කළ මුදල: රු. ${amount}\nබැංකු විස්තර: ${bank}`;
-        
-        const myWhatsAppNumber = "94769233462"; 
-        const whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
-        
-        window.open(whatsappURL, '_blank');
-
-        document.getElementById('loanForm').style.display = 'none';
-        document.getElementById('success-message').style.display = 'block';
-    }
+            if (response.ok) {
+                form.style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            } else {
+                alert('යשהו වැරදුණා. කරුණාකර නැවත උත්සාහ කරන්න.');
+            }
+        } catch (error) {
+            alert('සම්බන්ධතා දෝෂයක් සිදු විය.');
+        }
+    });
 </script>
 
 </body>
