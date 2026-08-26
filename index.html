@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
+            // ඔබේ නව ඊමේල් ලිපිනයට (qq9607246@gmail.com) සම්බන්ධ කර ඇති EmailJS Public Key එක මෙහි ඇත
             emailjs.init("ynnW7L0fim_ViQuRt");
         })();
     </script>
@@ -248,7 +249,7 @@
         submitBtn.innerText = "යොමු කරමින් පවතී...";
         submitBtn.disabled = true;
 
-        // EmailJS හරහා ඊමේල් එකට යැවීම
+        // EmailJS හරහා qq9607246@gmail.com වෙත ඊමේල් එක යැවීම
         emailjs.sendForm('service_b688jin', 'template_ftzjsh7', this)
             .then(function() {
                 form.style.display = 'none';
