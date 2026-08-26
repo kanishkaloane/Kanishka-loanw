@@ -3,154 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanishka Loan Service - ණය අයදුම්පත</title>
+    <title>Kanishka Loan Service - පුද්ගලික ණය පහසුකම්</title>
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("ynnW7L0fim_ViQuRt");
+        })();
+    </script>
     <style>
+        :root {
+            --primary-color: #0f5132;
+            --secondary-color: #198754;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #dee2e6;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: var(--bg-color);
             margin: 0;
             padding: 20px;
-            color: #333;
+            color: var(--text-color);
+            line-height: 1.6;
         }
         .container {
-            max-width: 550px;
-            background: #ffffff;
+            max-width: 600px;
+            background: var(--card-bg);
             margin: 0 auto;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
         h2 {
             text-align: center;
-            color: #075e54;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 15px;
         }
         .info-box {
-            background-color: #eef6fb;
-            border-left: 4px solid #2196F3;
-            padding: 15px;
-            border-radius: 6px;
+            background-color: #f1f8f5;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
             font-size: 14px;
             margin-bottom: 25px;
-            line-height: 1.6;
         }
         .info-box ul {
-            margin: 5px 0 0 0;
+            margin: 8px 0;
             padding-left: 20px;
         }
         .info-box li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .warning-box {
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
             color: #856404;
-            padding: 12px;
-            border-radius: 6px;
+            padding: 14px;
+            border-radius: 8px;
             font-size: 13px;
-            margin-bottom: 15px;
+            margin: 15px 0;
             line-height: 1.5;
+            font-weight: 500;
+        }
+        .danger-box {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin: 15px 0;
+            line-height: 1.5;
+            font-weight: 500;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
         }
         input, select, textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-size: 14px;
             box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
         }
         button {
             width: 100%;
-            background-color: #25d366;
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.1s;
         }
         button:hover {
-            background-color: #1ebe5d;
+            background-color: #157347;
+        }
+        button:active {
+            transform: scale(0.98);
         }
         #success-message {
             display: none;
             text-align: center;
-            color: #2e7d32;
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 6px;
+            color: #0f5132;
+            background: #d1e7dd;
+            border: 1px solid #badbcc;
+            padding: 20px;
+            border-radius: 8px;
             font-weight: bold;
             margin-top: 20px;
+        }
+        .divider {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Kanishka Loan Service</h2>
+    <h2>💰 පුද්ගලික නය පහසුකම්</h2>
     
-    <!-- අවශ්‍ය දේවල් සහ කොන්දේසි කොටස -->
     <div class="info-box">
-        <strong>අවශ්‍ය දේවල් සහ කොන්දේසි:</strong>
-        <ul>
-            <li><strong>අවශ්‍ය ලේඛන:</strong> ජාතික හැඳුනුම්පත (ID Card) හෝ විදේශ ගමන් බලපත්‍රයේ ෆොටෝ 2ක් සහ ස්ථිර පදිංචි ලිපිනය.</li>
-            <li><strong>සේවා ගාස්තු විස්තර (Service Charge):</strong>
-                <br>• ලක්ෂ 1 – රු. 5,500
-                <br>• ලක්ෂ 2 – රු. 11,000
-                <br>• ලක්ෂ 5 – රු. 27,500
-                <br>• ලක්ෂ 10 – රු. 55,000
-                <br>• ලක්ෂ 20 – රු. 110,000
-                <br>• ලක්ෂ 30 – රු. 175,000
-                <br>• ලක්ෂ 50 – රු. 275,000
-            </li>
-        </ul>
+        <p style="margin-top: 0; font-weight: 600;">ඔයාට ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා නය පහසුකම් ලබාගන්න පුළුවන්.</p>
         
+        <strong>📌 අවශ්‍ය දේවල්:</strong>
+        <ul>
+            <li>🪪 ජාතික හැඳුනුම්පත (ID Card) හෝ පාස්පෝට් එකේ ෆොටෝ 2ක්</li>
+            <li>🏠 ස්ථීර ලිපිනය</li>
+        </ul>
+
+        <p style="margin-bottom: 5px;">🔹 අපි මේ සියලු කටයුතු Online හරහාම කරනවා<br>
+        🔹 පැහැදිලි හා විශ්වාසදායක සේවාවක් ලබාදෙයි</p>
+
+        <hr class="divider">
+
+        <strong>💳 Service Charge විස්තර:</strong>
+        <ul>
+            <li>ලක්ෂ 1 – රු. 5500</li>
+            <li>ලක්ෂ 2 – රු. 11000</li>
+            <li>ලක්ෂ 4 – රු. 24000</li>
+            <li><em>(ලක්ෂයකට රු. 5500 බැගින්)</em></li>
+        </ul>
+
+        <p style="margin: 10px 0 5px 0;">
+           • ලක්ශයට 5500<br>
+           • ලක්ශ 2 ට 11000<br>
+           • ලක්ශ 5 ට 27500<br>
+           • ලක්ශ 10ට 55000<br>
+           • ලක්ශ 20ට 110000<br>
+           • ලක්ශ 30ට 175000<br>
+           • ලක්ශ 50ට 275000
+        </p>
+
         <div class="warning-box">
-            ⚠️ සේවා ගාස්තුව අනිවාර්යයෙන්ම ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. සේවා ගාස්තුව ඩිපොසිට් කර පැය 2කින් ණය මුදල ලබාගත හැක.
+            ⚠️ සර්විස් චාර්ජ් එක අනිවාරෙන් ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. ඔයාට අවශ්‍ය මුදලට service charge එක ඩිපොසිට් කරලා පැය දෙකෙන් ඔයාට ලෝන් එක ගන්න පුළුවන්.
         </div>
 
+        <strong>⏳ ගෙවීම් කොන්දේසි:</strong>
         <ul>
-            <li><strong>ගෙවීම් කොන්දේසි:</strong> අවුරුදු 4ක් ඇතුළත සම්පූර්ණයෙන් ගෙවිය යුතුයි. මාසික වාරික අනිවාර්ය නැත; ඔබට හැකි විදිහට ගෙවන්න පුළුවන්.</li>
-            <li><strong>ප්‍රමාද වීම්:</strong> අවුරුදු 4ක් ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට 10%ක අමතර මුදලක් ගෙවිය යුතුයි.</li>
-            <li>🔷 අපි මේ සියලු කටයුතු Online හරහාම කරන පැහැදිලි හා විශ්වාසදායක සේවාවක් සැපයන්නෙමු.</li>
+            <li>⏱️ අවුරුදු 4ක් ඇතුළත මුදල සම්පූර්ණයෙන් ගෙවිය යුතුයි</li>
+            <li>❌ මාසික වාරික අනිවාර්ය නැහැ</li>
+            <li>✅ ඔබට හැකි විදියට අවුරුදු 4 ඇතුළත ගෙවන්න පුළුවන්</li>
         </ul>
-    </div>
 
-    <!-- බැංකු ගිණුම් විස්තර නොටිස් එක -->
-    <div class="warning-box" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-        <strong>💳 ගෙවීම් කළ යුතු බැංකු ගිණුම:</strong><br>
-        • බැංකුව: <b>Commercial Bank</b><br>
-        • ගිණුම් අංකය: <b>8017329587</b><br>
-        • නම: <b>K.A.K. Priyankara</b>
+        <div class="danger-box">
+            ⚠️ අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට සීයට 10ක අමතර මුදලක් ගෙවිය යුතුයි.
+        </div>
+
+        <p style="margin-bottom: 0; font-weight: 500; text-align: center; color: var(--secondary-color);">🙏 අවශ්‍ය අයට සේවාවක් ලෙස මේක සපයන්නේ</p>
     </div>
 
     <!-- ණය අයදුම්පත Form එක -->
-    <form id="loanForm" action="https://formspree.io/f/xvkopknb" method="POST">
+    <form id="loanForm">
         <div class="form-group">
             <label for="fullName">සම්පූර්ණ නම:</label>
             <input type="text" id="fullName" name="fullName" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
         </div>
 
         <div class="form-group">
-            <label for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
-            <input type="text" id="nic" name="nic" placeholder="NIC අංකය ඇතුළත් කරන්න" required>
+            <label for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC) / පාස්පෝට් අංකය:</label>
+            <input type="text" id="nic" name="nic" placeholder="NIC හෝ Passport අංකය" required>
         </div>
 
         <div class="form-group">
-            <label for="phone">දුරකථන අංකය:</label>
-            <input type="tel" id="phone" name="phone" placeholder="දුරකථන අංකය ඇතුළත් කරන්න" required>
+            <label for="phone">දුරකථන අංක දෙකක් (Phone Numbers):</label>
+            <input type="text" id="phone" name="phone" placeholder="දුරකථන අංක දෙකක් ඇතුළත් කරන්න" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">ස්ථීර පදිංචි ලිපිනය:</label>
+            <textarea id="address" name="address" rows="2" placeholder="ඔබේ ලිපිනය" required></textarea>
         </div>
 
         <div class="form-group">
@@ -159,52 +225,39 @@
         </div>
 
         <div class="form-group">
-            <label for="bank">ඔබේ බැංකුව සහ ශාඛාව:</label>
-            <input type="text" id="bank" name="bank" placeholder="බැංකුව සහ ශාඛාව" required>
+            <label for="bank">අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
+            <textarea id="bank" name="bank" rows="2" placeholder="බැංකුව, ශාඛාව සහ ගිණුම් අංකය" required></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="accountNo">ඔබේ බැංකු ගිණුම් අංකය:</label>
-            <input type="text" id="accountNo" name="accountNo" placeholder="ගිණුම් අංකය" required>
-        </div>
-
-        <div class="form-group">
-            <label for="depositRef">ගෙවීම් කළ රිසිට්පත් අංකය / විස්තර:</label>
-            <input type="text" id="depositRef" name="depositRef" placeholder="Slip Ref No / Bank Name" required>
-        </div>
-
-        <button type="submit">අයදුම්පත යොමු කරන්න</button>
+        <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
     </form>
 
     <div id="success-message">
-        ස්තුතියි! ඔබගේ ණය අයදුම්පත සහ ගෙවීම් විස්තර සාර්ථකව යොමු කරන ලදී. අපි පරීක්ෂා කර බලා ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
+        ස්තුතියි! ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී. අපි ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
     </div>
 </div>
 
 <script>
     const form = document.getElementById('loanForm');
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const data = new FormData(form);
-        
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+    const successMessage = document.getElementById('success-message');
+    const submitBtn = document.getElementById('submitBtn');
 
-            if (response.ok) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        submitBtn.innerText = "යොමු කරමින් පවතී...";
+        submitBtn.disabled = true;
+
+        // EmailJS හරහා ඊමේල් එකට යැවීම
+        emailjs.sendForm('service_b688jin', 'template_ftzjsh7', this)
+            .then(function() {
                 form.style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-            } else {
+                successMessage.style.display = 'block';
+            }, function(error) {
                 alert('යשהו වැරදුණා. කරුණාකර නැවත උත්සාහ කරන්න.');
-            }
-        } catch (error) {
-            alert('සම්බන්ධතා දෝෂයක් සිදු විය.');
-        }
+                submitBtn.innerText = "අයදුම්පත යොමු කරන්න";
+                submitBtn.disabled = false;
+            });
     });
 </script>
 
