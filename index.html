@@ -1,98 +1,204 @@
-<!DOCTYPE html>  
-<html lang="si">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>ඉක්මන් ණය සේවාව</title>  
-    <style>  
-        body { font-family: sans-serif; background: #f4f7f6; margin: 0; padding: 10px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }  
-        .container { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }  
-        h2, h3 { text-align: center; color: #2c3e50; }  
-        .form-group { margin-bottom: 12px; }  
-        label { display: block; margin-bottom: 4px; font-weight: bold; font-size: 13px; }  
-        input, select { width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 13px; }  
-        button { background: #27ae60; color: white; border: none; padding: 11px; width: 100%; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 8px; }  
-        .calc-box { background: #e8f8f5; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; color: #117a65; text-align: center; }  
-        .admin-link { text-align: center; margin-top: 15px; }  
-        .admin-link a { color: #2980b9; text-decoration: none; font-size: 13px; font-weight: bold; }  
-        .hidden { display: none; }  
-        .loan-card { background: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }  
-        .status-btn { padding: 4px 8px; font-size: 11px; margin-top: 5px; cursor: pointer; }  
-    </style>  
-</head>  
-<body>  
-<div class="container">  
-    <div id="userSection">  
-        <h2>🚀 ඉක්මන් ණය සේවාව</h2>  
-        <div class="calc-box">  
-            ණය මුදල: <span id="displayAmount">රු. 25,000</span><br>  
-            <b>ගෙවිය යුතු මුදල: <span id="displayTotal">රු. 27,500</span></b>  
-        </div>  
-        <form id="loanForm">  
-            <div class="form-group"><label>නම</label><input type="text" id="name" required></div>  
-            <div class="form-group"><label>දුරකථන අංකය (WhatsApp)</label><input type="tel" id="phone" required></div>  
-            <div class="form-group"><label>හැඳුනුම්පත් අංකය (NIC)</label><input type="text" id="nic" required></div>  
-            <div class="form-group">  
-                <label>ණය මුදල</label>  
-                <select id="amountSelect" onchange="calc()">  
-                    <option value="10000">රු. 10,000</option>  
-                    <option value="25000" selected>රු. 25,000</option>  
-                    <option value="50000">රු. 50,000</option>  
-                    <option value="100000">රු. 100,000</option>  
-                </select>  
-            </div>  
-            <div class="form-group"><label>බැංකු විස්තර</label><input type="text" id="bank" required></div>  
-            <button type="submit">ණය ඉල්ලුම් කරන්න</button>  
-        </form>  
-        <div class="admin-link"><a href="#" onclick="showAdmin()">🔐 Admin Dashboard වෙත යන්න</a></div>  
-    </div>  
-    <div id="adminSection" class="hidden">  
-        <h3>🛡️ Admin Dashboard</h3>  
-        <div id="list"></div>  
-        <button style="background: #e74c3c;" onclick="showUser()">පෙර පිටුවට</button>  
-    </div>  
-</div>  
-<script>  
-    function calc() {  
-        let amt = parseInt(document.getElementById('amountSelect').value);  
-        document.getElementById('displayAmount').innerText = 'රු. ' + amt.toLocaleString();  
-        document.getElementById('displayTotal').innerText = 'රු. ' + (amt + amt*0.1).toLocaleString();  
-    }  
-    document.getElementById('loanForm').addEventListener('submit', function(e) {  
-        e.preventDefault();  
-        let name = document.getElementById('name').value;  
-        let phone = document.getElementById('phone').value;  
-        let nic = document.getElementById('nic').value;  
-        let amount = document.getElementById('amountSelect').value;  
-        let bank = document.getElementById('bank').value;  
-        let reqs = JSON.parse(localStorage.getItem('reqs')) || [];  
-        reqs.push({ name, phone, nic, amount, bank, status: 'Pending' });  
-        localStorage.setItem('reqs', JSON.stringify(reqs));  
-        let msg = `*නව ණය අයදුම්පතක්!*%0A%0Aනම: ${name}%0Aදුරකථන: ${phone}%0ANIC: ${nic}%0Aමුදල: රු. ${amount}%0Aබැංකුව: ${bank}`;  
-        window.location.href = `https://wa.me/94769233462?text=${msg}`;  
-    });  
-    function showAdmin() {  
-        document.getElementById('userSection').classList.add('hidden');  
-        document.getElementById('adminSection').classList.remove('hidden');  
-        let list = document.getElementById('list');  
-        let reqs = JSON.parse(localStorage.getItem('reqs')) || [];  
-        if(reqs.length === 0) { list.innerHTML = 'ඉල්ලීම් නැත'; return; }  
-        let h = '';  
-        reqs.forEach((r, i) => {  
-            h += `<div class="loan-card"><b>${r.name}</b> (${r.phone})<br>මුදල: රු. ${r.amount}<br>තත්ත්වය: ${r.status}<br><button class="status-btn" style="background:#27ae60;" onclick="up(${i},'Approved')">Approve</button> <button class="status-btn" style="background:#c0392b;" onclick="up(${i},'Rejected')">Reject</button></div>`;  
-        });  
-        list.innerHTML = h;  
-    }  
-    function showUser() {  
-        document.getElementById('adminSection').classList.add('hidden');  
-        document.getElementById('userSection').classList.remove('hidden');  
-    }  
-    function up(i, s) {  
-        let reqs = JSON.parse(localStorage.getItem('reqs')) || [];  
-        reqs[i].status = s;  
-        localStorage.setItem('reqs', JSON.stringify(reqs));  
-        showAdmin();  
-    }  
-</script>  
-</body>  
-</html>  
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ඉත්මන් ණය සේවාව - අයදුම්පත</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        /* කොන්දේසි පෙට්ටිය සඳහා ස්ටייל එක */
+        .terms-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .terms-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 15px;
+            color: #2980b9;
+        }
+        .terms-box ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .terms-box li {
+            margin-bottom: 6px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #856404;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #219653;
+        }
+        #success-message {
+            display: none;
+            text-align: center;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💰 පුද්ගලික ණය පහසුකම්</h2>
+    <div class="subtitle">ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ණය පහසුකම්</div>
+
+    <!-- ණය කොන්දේසි සහ විස්තර මුල් පිටුවේ දැක්වීම -->
+    <div class="terms-box">
+        <h3>📌 අවශ්‍ය දේවල් සහ කොන්දේසි:</h3>
+        <ul>
+            <li><strong>අවශ්‍ය ලේඛන:</strong> ජාතික හැඳුනුම්පත (ID Card) හෝ විදේශ ගමන් බලපත්‍රයේ ෆොටෝ 2ක්, ස්ථීර පදිංචි ලිපිනය සහ දුරකථන අංක 2ක්.</li>
+            <li><strong>සේවා ගාස්තුව (Service Charge):</strong> ලෝන් එක ලබා ගැනීමට පෙර සේවා ගාස්තුව අනිවාර්යයෙන් ඩිපොසිට් කළ යුතුය.
+                <br>• ලක්ෂ 1 – රු. 5,500<br>• ලක්ෂ 2 – රු. 11,000<br>• ලක්ෂ 5 – රු. 27,500<br>• ලක්ෂ 10 – රු. 55,000<br>• ලක්ෂ 20 – රු. 110,000<br>• ලක්ෂ 30 – රු. 175,000<br>• ලක්ෂ 50 – රු. 275,000
+            </li>
+            <li><span class="highlight">සේවා ගාස්තුව ඩිපොසිට් කර පැය 2ක් ඇතුළත ණය මුදල ලබාගත හැක.</span></li>
+            <li><strong>ගෙවීම් කොන්දේසි:</strong> අවුරුදු 4ක් ඇතුළත සම්පූර්ණයෙන් ගෙවිය යුතුයි. මාසික වාරික අනිවාර්ය නැත; ඔබට හැකි විදිහට ගෙවන්න පුළුවන්.</li>
+            <li>⚠️ අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට 10%ක අමතර මුදලක් එකතු වේ.</li>
+            <li>🙏 අවශ්‍ය අයට සේවාවක් ලෙස මෙය සපයනු ලැබේ.</li>
+        </ul>
+    </div>
+
+    <form id="loanForm" onsubmit="submitLoanForm(event)">
+        
+        <div class="form-group">
+            <label for="name">සම්පූර්ණ නම:</label>
+            <input type="text" id="name" required placeholder="ඔබගේ නම ඇතුළත් කරන්න">
+        </div>
+
+        <div class="form-group">
+            <label for="phone1">ප්‍රධාන දුරකථන අංකය:</label>
+            <input type="tel" id="phone1" required placeholder="07xxxxxxxx">
+        </div>
+
+        <div class="form-group">
+            <label for="phone2">දෙවන දුරකථන අංකය:</label>
+            <input type="tel" id="phone2" required placeholder="07xxxxxxxx">
+        </div>
+
+        <div class="form-group">
+            <label for="nic">ජාතික හැඳුනුම්පත හෝ පාස්පෝට් අංකය:</label>
+            <input type="text" id="nic" required placeholder="අංකය ඇතුළත් කරන්න">
+        </div>
+
+        <div class="form-group">
+            <label for="address">ස්ථීර පදිංචි ලිපිනය:</label>
+            <input type="text" id="address" required placeholder="ඔබගේ ලිපිනය">
+        </div>
+
+        <div class="form-group">
+            <label for="amount">අවශ්‍ය ණය මුදල (රු.):</label>
+            <input type="number" id="amount" required placeholder="උදා: 100000">
+        </div>
+
+        <div class="form-group">
+            <label for="bank">අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
+            <input type="text" id="bank" required placeholder="බැංකු විස්තර මෙහි ලියන්න">
+        </div>
+
+        <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
+    </form>
+
+    <div id="success-message">
+        ✅ ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී!<br>
+        ස්තුතියි! අපි ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
+    </div>
+</div>
+
+<script>
+    function submitLoanForm(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const phone1 = document.getElementById('phone1').value;
+        const phone2 = document.getElementById('phone2').value;
+        const nic = document.getElementById('nic').value;
+        const address = document.getElementById('address').value;
+        const amount = document.getElementById('amount').value;
+        const bank = document.getElementById('bank').value;
+
+        const message = `නව ණය අයදුම්පතක්!\n\nනම: ${name}\nප්‍රධාන දුරකථන: ${phone1}\nදෙවන දුරකථන: ${phone2}\nNIC/Passport: ${nic}\nලිපිනය: ${address}\nඉල්ලුම් කළ මුදල: රු. ${amount}\nබැංකු විස්තර: ${bank}`;
+        
+        const myWhatsAppNumber = "94769233462"; 
+        const whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappURL, '_blank');
+
+        document.getElementById('loanForm').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
