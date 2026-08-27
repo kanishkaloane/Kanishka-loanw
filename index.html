@@ -28,6 +28,9 @@
         button { background: #1a365d; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 20px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
         button:hover { background: #2a4365; }
         
+        .reset-btn { background: #e53e3e; margin-top: 10px; }
+        .reset-btn:hover { background: #c53030; }
+
         .hidden { display: none; }
         .center { text-align: center; }
     </style>
@@ -42,7 +45,7 @@
             
             <h3>අවශ්‍ය මූලික ලියකියවිලි</h3>
             <ul>
-                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය (స్పಷ್ಟ ඡායාරූප 2ක්)</li>
+                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය (స్పష్ట ඡායාරූප 2ක්)</li>
                 <li>ස්ථීර පදිංචි ලිපිනය සනාථ කිරීමට ලේඛනයක්</li>
                 <li>සක්‍රීය දුරකථන අංක දෙකක් (02)</li>
             </ul>
@@ -114,6 +117,8 @@
                     ඉහත සඳහන් ගිණුමට අදාළ සේවා ගාස්තුව බැංකුගත කර එහි රිසිට්පත අප වෙත යොමු කරන්න.
                 </p>
             </div>
+
+            <button class="reset-btn" onclick="clearData()">නව අයදුම්පතක් සඳහා (Reset)</button>
         </div>
     </div>
 
@@ -136,6 +141,7 @@
         function checkStatus() {
             const data = JSON.parse(localStorage.getItem('customerLoan'));
             if (data) {
+                // ඩේටා තියෙනවා නම් විතරක් ෆෝම් එක වහලා ස්ටේටස් කාඩ් එක පෙන්නන්න
                 document.getElementById('infoCard').style.display = 'none';
                 document.getElementById('formCard').style.display = 'none';
                 document.getElementById('statusCard').classList.remove('hidden');
@@ -146,7 +152,17 @@
                     document.getElementById('approvedDetails').classList.remove('hidden');
                     document.getElementById('approvedAmount').innerText = data.amount;
                 }
+            } else {
+                // ඩේටා නැත්නම් සාමාන්‍ය විදිහට ඉන්ෆෝ සහ ෆෝම් එක පෙන්නන්න
+                document.getElementById('infoCard').style.display = 'block';
+                document.getElementById('formCard').style.display = 'block';
+                document.getElementById('statusCard').classList.add('hidden');
             }
+        }
+
+        function clearData() {
+            localStorage.removeItem('customerLoan');
+            location.reload();
         }
 
         setInterval(checkStatus, 3000);
