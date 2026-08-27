@@ -8,7 +8,9 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f7; padding: 15px; color: #2c3e50; margin: 0; }
         .container { max-width: 550px; margin: auto; }
         .card { background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 4px solid #1a365d; }
-        h1 { color: #1a365d; font-size: 24px; text-align: center; margin-top: 0; font-weight: 700; }
+        .admin-card { background: #1a202c; color: #fff; border-top: 4px solid #e53e3e; }
+        h1, h2 { color: #1a365d; text-align: center; margin-top: 0; font-weight: 700; }
+        .admin-card h2 { color: #fff; }
         h3 { color: #2c3e50; font-size: 16px; border-bottom: 2px solid #edf2f7; padding-bottom: 8px; margin-top: 25px; font-weight: 600; }
         ul { padding-left: 20px; line-height: 1.8; font-size: 14px; color: #4a5568; }
         
@@ -19,16 +21,20 @@
 
         .notice-box { background: #fffaf0; color: #c05621; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #feebc8; margin: 15px 0; line-height: 1.6; }
         .warning-box { background: #fff5f5; color: #9b2c2c; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #fed7d7; margin: 15px 0; line-height: 1.6; }
-        .success-box { background: #f0fff4; color: #22543d; padding: 20px; border-radius: 6px; margin-top: 15px; text-align: center; border: 1px solid #c6f6d5; }
+        .success-box { background: #f0fff4; color: #22543d; padding: 20px; border-radius: 6px; margin-top: 15px; border: 1px solid #c6f6d5; }
         
         label { font-weight: 600; font-size: 13px; display: block; margin-top: 12px; color: #2d3748; }
+        .admin-card label { color: #e2e8f0; }
         input, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; background: #fff; }
         input:focus, textarea:focus { border-color: #1a365d; outline: none; box-shadow: 0 0 0 3px rgba(26,54,93,0.1); }
         
         button { background: #1a365d; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 20px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
         button:hover { background: #2a4365; }
         
-        .reset-btn { background: #e53e3e; margin-top: 10px; }
+        .approve-btn { background: #38a169; }
+        .approve-btn:hover { background: #2f855a; }
+        
+        .reset-btn { background: #e53e3e; margin-top: 15px; }
         .reset-btn:hover { background: #c53030; }
 
         .hidden { display: none; }
@@ -38,6 +44,21 @@
 <body>
 
     <div class="container">
+        <!-- Customer Status Card -->
+        <div class="card hidden" id="statusCard">
+            <h2 id="statusMainTitle" class="center">සාර්ථකයි!</h2>
+            <p id="statusSubText" class="center" style="color: #4a5568;">ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.</p>
+            
+            <div class="success-box hidden" id="approvedDetails">
+                <h3 style="color: #22543d; margin-top:0; text-align: center;">✅ ණය අනුමත විය!</h3>
+                <p style="margin: 8px 0; text-align: center;"><strong>ගිණුම් අංකය / බැංකු විස්තර:</strong><br><span id="accNumber" style="font-size: 18px; color: #1a365d; font-weight: bold;">8123456789 (Commercial Bank)</span></p>
+                <p style="margin: 8px 0; text-align: center;"><strong>අනුමත කළ මුදල:</strong> රු. <span id="approvedAmount" style="font-weight: bold;"></span>/=</p>
+                <p style="font-size: 13px; color: #22543d; margin-top: 15px; border-top: 1px dashed #c6f6d5; padding-top: 10px; text-align: center;">
+                    ඉහත විස්තර අනුව අදාළ Service Charge මුදල බැංකු කර රිසිට්පත යොමු කරන්න.
+                </p>
+            </div>
+        </div>
+
         <!-- Loan Info Card -->
         <div class="card" id="infoCard">
             <h1>පෞද්ගලික ණය පහසුකම් සේවාව</h1>
@@ -80,7 +101,7 @@
 
         <!-- Application Form Card -->
         <div class="card" id="formCard">
-            <h2 style="font-size: 18px; text-align: center; color: #1a365d; margin-top: 0;">ණය අයදුම්පත්‍රය</h2>
+            <h2 style="font-size: 18px; color: #1a365d; margin-top: 0;">ණය අයදුම්පත්‍රය</h2>
             <form id="loanForm" onsubmit="saveLoanData(event); return false;">
                 <label>ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
                 <input type="text" id="nic" placeholder="උදා: 199012345678" required>
@@ -104,21 +125,24 @@
             </form>
         </div>
 
-        <!-- Status Card (Pending / Approved) -->
-        <div class="card hidden" id="statusCard">
-            <h2 id="statusTitle" class="center" style="color: #1a365d;">අයදුම්පත සමාලෝචනය වෙමින් පවතී</h2>
-            <p id="statusText" class="center" style="color: #4a5568;">ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න.</p>
-            
-            <div class="hidden success-box" id="approvedDetails">
-                <h3 style="color: #22543d; margin-top:0;">ණය අයදුම්පත අනුමත කරන ලදී</h3>
-                <p style="margin: 8px 0;"><strong>බැංකු ගිණුම් විස්තර:</strong><br><span id="accNumber" style="font-size: 16px; color: #1a365d;">8123456789 (Commercial Bank)</span></p>
-                <p style="margin: 8px 0;"><strong>අනුමත කළ ණය මුදල:</strong> රු. <span id="approvedAmount"></span>/=</p>
-                <p style="font-size: 13px; color: #22543d; margin-top: 15px; border-top: 1px dashed #c6f6d5; padding-top: 10px;">
-                    ඉහත සඳහන් ගිණුමට අදාළ සේවා ගාස්තුව බැංකුගත කර එහි රිසිට්පත අප වෙත යොමු කරන්න.
-                </p>
+        <!-- Admin Panel Card -->
+        <div class="card admin-card" id="adminCard">
+            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
+            <div id="adminNoData" class="center" style="color: #a0aec0; padding: 20px;">
+                තවම නව අයදුම්පත් ලැබී නැත.
             </div>
-
-            <button class="reset-btn" onclick="clearData()">නව අයදුම්පතක් සඳහා (Reset)</button>
+            <div id="adminDataContent" class="hidden">
+                <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="admNic"></span></p>
+                <p><strong>දුරකථන 1:</strong> <span id="admPhone1"></span></p>
+                <p><strong>දුරකථන 2:</strong> <span id="admPhone2"></span></p>
+                <p><strong>ලිපිනය:</strong> <span id="admAddress"></span></p>
+                <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="admAmount"></span></p>
+                <p><strong>බැංකු විස්තර:</strong> <span id="admBank"></span></p>
+                <p><strong>තත්ත්වය:</strong> <span id="admStatus" style="font-weight: bold;"></span></p>
+                
+                <button class="approve-btn" onclick="approveLoan()">Approve කරන්න (අනුමත කරන්න)</button>
+                <button class="reset-btn" onclick="clearData()">ඩේටා මකන්න (Reset)</button>
+            </div>
         </div>
     </div>
 
@@ -131,42 +155,70 @@
                 address: document.getElementById('address').value,
                 amount: document.getElementById('amount').value,
                 bank: document.getElementById('bank').value,
-                status: 'pending'
+                status: 'Pending'
             };
             localStorage.setItem('customerLoan', JSON.stringify(loanData));
-            checkStatus();
+            loadData();
             alert("අයදුම්පත සාර්ථකව යොමු කරන ලදී.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function checkStatus() {
+        function loadData() {
             const data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                // ඩේටා තියෙනවා නම් විතරක් ෆෝම් එක වහලා ස්ටේටස් කාඩ් එක පෙන්නන්න
-                document.getElementById('infoCard').style.display = 'none';
-                document.getElementById('formCard').style.display = 'none';
-                document.getElementById('statusCard').classList.remove('hidden');
+            const statusCard = document.getElementById('statusCard');
+            const adminNoData = document.getElementById('adminNoData');
+            const adminDataContent = document.getElementById('adminDataContent');
+            const approvedDetails = document.getElementById('approvedDetails');
 
-                if (data.status === 'approved') {
-                    document.getElementById('statusTitle').innerText = "අනුමත කිරීම සාර්ථකයි";
-                    document.getElementById('statusText').innerText = "ඔබගේ ණය අයදුම්පත පද්ධතිය විසින් අනුමත කර ඇත.";
-                    document.getElementById('approvedDetails').classList.remove('hidden');
+            if (data) {
+                // Admin panel data fill
+                adminNoData.classList.add('hidden');
+                adminDataContent.classList.remove('hidden');
+                document.getElementById('admNic').innerText = data.nic;
+                document.getElementById('admPhone1').innerText = data.phone1;
+                document.getElementById('admPhone2').innerText = data.phone2;
+                document.getElementById('admAddress').innerText = data.address;
+                document.getElementById('admAmount').innerText = data.amount;
+                document.getElementById('admBank').innerText = data.bank;
+                document.getElementById('admStatus').innerText = data.status;
+
+                // Customer view status check
+                statusCard.classList.remove('hidden');
+                if (data.status === 'Approved') {
+                    document.getElementById('statusMainTitle').innerText = "සාර්ථකයි!";
+                    document.getElementById('statusSubText').innerText = "ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.";
+                    approvedDetails.classList.remove('hidden');
                     document.getElementById('approvedAmount').innerText = data.amount;
+                } else {
+                    document.getElementById('statusMainTitle').innerText = "අයදුම්පත සමාලෝචනය වෙමින් පවතී";
+                    document.getElementById('statusSubText').innerText = "ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න.";
+                    approvedDetails.classList.add('hidden');
                 }
             } else {
-                // ඩේටා නැත්නම් සාමාන්‍ය විදිහට ඉන්ෆෝ සහ ෆෝම් එක පෙන්නන්න
-                document.getElementById('infoCard').style.display = 'block';
-                document.getElementById('formCard').style.display = 'block';
-                document.getElementById('statusCard').classList.add('hidden');
+                statusCard.classList.add('hidden');
+                adminNoData.classList.remove('hidden');
+                adminDataContent.classList.add('hidden');
+            }
+        }
+
+        function approveLoan() {
+            const data = JSON.parse(localStorage.getItem('customerLoan'));
+            if (data) {
+                data.status = 'Approved';
+                localStorage.setItem('customerLoan', JSON.stringify(data));
+                loadData();
+                alert("ණය අයදුම්පත සාර්ථකව අනුමත කරන ලදී!");
             }
         }
 
         function clearData() {
             localStorage.removeItem('customerLoan');
+            loadData();
             location.reload();
         }
 
-        setInterval(checkStatus, 3000);
-        window.onload = checkStatus;
+        setInterval(loadData, 3000);
+        window.onload = loadData;
     </script>
 </body>
 </html>
