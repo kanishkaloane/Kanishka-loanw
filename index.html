@@ -1,209 +1,44 @@
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>පුද්ගලික ණය පහසුකම්</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 15px; color: #333; margin: 0; }
-        .container { max-width: 500px; margin: auto; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h1 { color: #1a73e8; font-size: 22px; text-align: center; margin-top: 0; }
-        h3 { color: #333; font-size: 16px; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; margin-top: 20px; }
-        ul { padding-left: 20px; line-height: 1.6; font-size: 14px; }
-        .charge-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
-        .charge-table th, .charge-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        .charge-table th { background-color: #f8f9fa; }
-        .warning-box { background: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; font-size: 13px; border: 1px solid #ffeeba; margin: 15px 0; }
-        .success-box { background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; }
-        
-        label { font-weight: bold; font-size: 13px; display: block; margin-top: 10px; color: #444; }
-        input, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        button { background: #28a745; color: white; font-size: 16px; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; }
-        .admin-toggle { background: #343a40; font-size: 13px; padding: 8px; margin-top: 10px; }
-        .hidden { display: none; }
-        .center { text-align: center; }
-        .admin-card { background: #2a2a40; color: #fff; }
-    </style>
-</head>
-<body>
+<div class="card" id="infoCard">
+    <h1 style="color: #d9534f; text-align: center; font-size: 24px;">🔥 අදම මුදල් ලබාගන්න! 🔥</h1>
+    <p class="center" style="font-size: 16px; font-weight: bold; color: #333;">ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ඕනෑම මුදලක් පැය 2න් ඔබේ අතටම!</p>
+    
+    <h3 style="color: #0275d8;">📌 අනිවාර්යයෙන් තිබිය යුතු දේවල්:</h3>
+    <ul style="font-size: 15px; font-weight: bold;">
+        <li>🪪 හැඳුනුම්පත හෝ පාස්පෝට් එකේ <b>ඡායාරූප 2ක්</b></li>
+        <li>🏠 ස්ථීර පදිංචි ලිපිනයක්</li>
+        <li>📱 ක්‍රියාත්මක වන දුරකථන අංක <b>2ක්</b></li>
+    </ul>
 
-    <div class="container">
-        <!-- Customer View -->
-        <div id="customerSection">
-            <div class="card" id="infoCard">
-                <h1>💰 පුද්ගලික ණය පහසුකම්</h1>
-                <p class="center" style="font-size: 14px; color: #555;">ඔයාට ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ණය පහසුකම් ලබාගන්න පුළුවන්.</p>
-                
-                <h3>📌 අවශ්‍ය දේවල්</h3>
-                <ul>
-                    <li>🪪 හැඳුනුම්පත හෝ පාස්පෝට් එක – <b>ඡායාරූප 2ක්</b></li>
-                    <li>🏠 ස්ථීර පදිංචි ලිපිනය | 📱 දුරකථන අංක 2ක්</li>
-                </ul>
-
-                <h3>💳 Service Charge විස්තර</h3>
-                <p style="font-size: 13px; color: #c62828; font-weight: bold;">⚠️ සර්විස් චාර්ජ් එක ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ.</p>
-                
-                <table class="charge-table">
-                    <tr><th>ණය මුදල</th><th>Service Charge</th></tr>
-                    <tr><td>ලක්ෂ 1</td><td>රු. 5,500</td></tr>
-                    <tr><td>ලක්ෂ 2</td><td>රු. 11,000</td></tr>
-                    <tr><td>ලක්ෂ 5</td><td>රු. 27,500</td></tr>
-                    <tr><td>ලක්ෂ 10</td><td>රු. 55,000</td></tr>
-                    <tr><td>ලක්ෂ 20</td><td>රු. 110,000</td></tr>
-                    <tr><td>ලක්ෂ 30</td><td>රු. 175,000</td></tr>
-                    <tr><td>ලක්ෂ 50</td><td>රු. 275,000</td></tr>
-                </table>
-
-                <h3>⏳ ගෙවීම් කොන්දේසි</h3>
-                <ul>
-                    <li>⏱️ අවුරුදු 4ක් ඇතුළත මුදල සම්පූර්ණයෙන් ගෙවිය යුතුයි</li>
-                    <li>❌ මාසික වාරික අනිවාර්ය නැහැ</li>
-                    <li>✅ ඔබට හැකි විදියට අවුරුදු 4 ඇතුළත ගෙවන්න පුළුවන්</li>
-                </ul>
-
-                <div class="warning-box">
-                    <b>⚠️ අවධානයට:</b> අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට සීයට 10ක (10%) අමතර මුදලක් ගෙවිය යුතුයි.
-                </div>
-            </div>
-
-            <!-- Application Form Card -->
-            <div class="card" id="formCard">
-                <h2 style="font-size: 18px; text-align: center; color: #333;">📝 අයදුම්පත පුරවන්න</h2>
-                <form id="loanForm" onsubmit="saveLoanData(event); return false;">
-                    <label>ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
-                    <input type="text" id="nic" required>
-
-                    <label>ප්‍රධාන දුරකථන අංකය:</label>
-                    <input type="text" id="phone1" required>
-
-                    <label>දෙවන දුරකථන අංකය:</label>
-                    <input type="text" id="phone2" required>
-
-                    <label>ස්ථීර ලිපිනය:</label>
-                    <textarea id="address" rows="2" required></textarea>
-
-                    <label>අවශ්‍ය ණය මුදල (රු.):</label>
-                    <input type="number" id="amount" required>
-
-                    <label>බැංකු විස්තර (ගිණුම් අංකය, බැංකුව, නම):</label>
-                    <textarea id="bank" rows="2" required></textarea>
-
-                    <button type="submit">අයදුම්පත යොමු කරන්න</button>
-                </form>
-            </div>
-
-            <!-- Status Card (Pending / Approved) -->
-            <div class="card hidden" id="statusCard">
-                <h2 id="statusTitle" class="center">⏳ අයදුම්පත ලැබුණි</h2>
-                <p id="statusText" class="center">ඔබගේ අයදුම්පත පරීක්ෂා කරමින් පවතී. පැය 2ක් ඇතුළත සකස් කෙරේ.</p>
-                
-                <div class="hidden success-box" id="approvedDetails">
-                    <h3>✅ ණය අනුමත විය!</h3>
-                    <p><strong>ගිණුම් අංකය / බැංකු විස්තර:</strong> <br><span id="accNumber" style="color: #000; font-weight: bold;">8123456789 (Commercial Bank)</span></p>
-                    <p><strong>අනුමත කළ මුදල:</strong> රු. <span id="approvedAmount"></span>/=</p>
-                    <p style="font-size: 13px; color: #155724; margin-top: 10px;">ඉහත විස්තර අනුව අදාළ Service Charge මුදල බැරක කර රිසිට්පත යොමු කරන්න.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Admin Panel Toggle Button (උඹට ඇමින් පැනල් එකට යන්න පුළුවන් බට්න් එක) -->
-        <button class="admin-toggle" onclick="toggleAdminPanel()">🛡️ ඇමින් පැනල් එක වෙත යන්න / මාරු වන්න</button>
-
-        <!-- Admin Panel Section -->
-        <div class="card admin-card hidden" id="adminSection">
-            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
-            <div id="requestInfo">
-                <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
-                <p><strong>දුරකථන 1:</strong> <span id="adminPhone1">-</span></p>
-                <p><strong>දුරකථන 2:</strong> <span id="adminPhone2">-</span></p>
-                <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
-                <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount">-</span></p>
-                <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
-                <p><strong>තත්ත්වය:</strong> <span id="adminStatus" style="color: orange; font-weight: bold;">Pending</span></p>
-                
-                <button style="background: #28a745;" onclick="approveLoan()">Approve කරන්න (අනුමත කරන්න)</button>
-                <button style="background: #dc3545; margin-top: 10px;" onclick="clearData()">ඩේටා මකන්න (Reset)</button>
-            </div>
-        </div>
+    <div style="background: #ffdddd; border-left: 5px solid #f44336; padding: 12px; margin: 15px 0; border-radius: 5px;">
+        <p style="margin: 0; color: #d9534f; font-weight: bold; font-size: 14px;">
+            ⚠️ ඉතා වැදගත්: ණය මුදල ලබා ගැනීමට පෙර, පහත සඳහන් "සර්විස් චාර්ජ්" (Service Charge) මුදල අනිවාර්යයෙන් මුලින්ම ඩිපොසිට් කළ යුතුය!
+        </p>
     </div>
 
-    <script>
-        function saveLoanData(e) {
-            const loanData = {
-                nic: document.getElementById('nic').value,
-                phone1: document.getElementById('phone1').value,
-                phone2: document.getElementById('phone2').value,
-                address: document.getElementById('address').value,
-                amount: document.getElementById('amount').value,
-                bank: document.getElementById('bank').value,
-                status: 'pending'
-            };
-            localStorage.setItem('customerLoan', JSON.stringify(loanData));
-            checkStatus();
-            alert("අයදුම්පත සාර්ථකව යොමු කරන ලදී!");
-        }
+    <h3 style="color: #0275d8;">💳 සර්විස් චාර්ජ් ගාස්තු तालिका (Table)</h3>
+    <table class="charge-table" style="font-size: 15px; font-weight: bold;">
+        <tr style="background: #0275d8; color: white;"><th>ඔබ ඉල්ලන ණය මුදල</th><th>මුලින් ගෙවිය යුතු Service Charge</th></tr>
+        <tr><td>👉 ලක්ෂ 1යි</td><td>රු. 5,500යි</td></tr>
+        <tr><td>👉 ලක්ෂ 2යි</td><td>රු. 11,000යි</td></tr>
+        <tr><td>👉 ලක්ෂ 5යි</td><td>රු. 27,500යි</td></tr>
+        <tr><td>👉 ලක්ෂ 10යි</td><td>රු. 55,000යි</td></tr>
+        <tr><td>👉 ලක්ෂ 20යි</td><td>රු. 110,000යි</td></tr>
+        <tr><td>👉 ලක්ෂ 30යි</td><td>රු. 175,000යි</td></tr>
+        <tr><td>👉 ලක්ෂ 50යි</td><td>රු. 275,000යි</td></tr>
+    </table>
 
-        function checkStatus() {
-            const data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                document.getElementById('infoCard').style.display = 'none';
-                document.getElementById('formCard').style.display = 'none';
-                document.getElementById('statusCard').classList.remove('hidden');
+    <h3 style="color: #0275d8;">⏳ ගෙවීමේ පහසු ක්‍රම</h3>
+    <ul style="font-size: 14px; line-height: 1.8;">
+        <li>⏱️ මුදල සම්පූර්ණයෙන් ගෙවන්න <b>අවුරුදු 4ක</b> කාලයක් ලැබේ.</li>
+        <li>❌ <b>මාසික වාරික ගෙවීම් අනිවාර්ය නැත!</b></li>
+        <li>✅ අවුරුදු 4 ඇතුළත ඔබට හැකි විදිහට ටිකෙන් ටික හෝ එකවර ගෙවා නිදහස් විය හැක.</li>
+    </ul>
 
-                if (data.status === 'approved') {
-                    document.getElementById('statusTitle').innerText = "සාර්ථකයි!";
-                    document.getElementById('statusText').innerText = "ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.";
-                    document.getElementById('approvedDetails').classList.remove('hidden');
-                    document.getElementById('approvedAmount').innerText = data.amount;
-                }
-            }
-            loadAdminData();
-        }
+    <div class="warning-box" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 5px; font-size: 14px; color: #856404; font-weight: bold;">
+        ⚠️ විශේෂයි: අවුරුදු 4ක් ඇතුළත මුدල ගෙවා අවසන් කිරීමට අපොහොසත් වුවහොත්, ලබාගත් මුදල මෙන් <b>10%ක අමතර දඩ මුදලක්</b> අය කෙරේ.
+    </div>
 
-        function loadAdminData() {
-            const data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                document.getElementById('adminNic').innerText = data.nic || '-';
-                document.getElementById('adminPhone1').innerText = data.phone1 || '-';
-                document.getElementById('adminPhone2').innerText = data.phone2 || '-';
-                document.getElementById('adminAddress').innerText = data.address || '-';
-                document.getElementById('adminAmount').innerText = data.amount || '-';
-                document.getElementById('adminBank').innerText = data.bank || '-';
-                
-                if (data.status === 'approved') {
-                    document.getElementById('adminStatus').innerText = "Approved ✅";
-                    document.getElementById('adminStatus').style.color = "lightgreen";
-                }
-            }
-        }
-
-        function approveLoan() {
-            let data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                data.status = 'approved';
-                localStorage.setItem('customerLoan', JSON.stringify(data));
-                alert("සාර්ථකව අනුමත කරන ලදී!");
-                checkStatus();
-            } else {
-                alert("අයදුම්පත් කිසිවක් නොමැත!");
-            }
-        }
-
-        function clearData() {
-            localStorage.removeItem('customerLoan');
-            alert("සියලු දේ මකා දමන ලදී. දැන් අලුතින් ටෙස්ට් කළ හැක.");
-            location.reload();
-        }
-
-        function toggleAdminPanel() {
-            const adminSec = document.getElementById('adminSection');
-            adminSec.classList.toggle('hidden');
-            loadAdminData();
-        }
-
-        setInterval(checkStatus, 3000);
-        window.onload = checkStatus;
-    </script>
-</body>
-</html>
+    <p class="center" style="font-size: 16px; font-weight: bold; color: #28a745; margin-top: 15px;">
+        🚀 සර්විස් චාර්ජ් එක දාලා පැය 2න් ලෝන් එක ගෙදරටම ගෙවාගන්න දැන්ම පහළින් ෆෝම් එක පුරවන්න!
+    </p>
+</div>
