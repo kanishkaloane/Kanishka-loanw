@@ -5,27 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - ණය කළමනාකරණය</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #222; color: white; padding: 20px; text-align: center; }
-        .card { background: #333; padding: 20px; border-radius: 10px; max-width: 450px; margin: auto; text-align: left; box-shadow: 0px 0px 10px rgba(255,255,255,0.1); }
-        button { background: #dc3545; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 15px; }
-        .approved-btn { background: #28a745; }
-        p { margin: 8px 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e2f; color: #fff; padding: 20px; margin: 0; }
+        .container { max-width: 500px; margin: auto; }
+        .card { background: #2a2a40; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h2 { text-align: center; color: #4e73df; margin-top: 0; }
+        .info-group { background: #1e1e2f; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #4e73df; }
+        p { margin: 8px 0; font-size: 14px; word-break: break-all; }
+        strong { color: #b0bec5; }
+        button { background: #e74a3b; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; transition: 0.3s; }
+        button:hover { opacity: 0.9; }
+        .approved-btn { background: #1cc88a; }
+        .status-pending { color: #f6c23e; font-weight: bold; }
+        .status-approved { color: #1cc88a; font-weight: bold; }
+        .no-data { text-align: center; color: #aaa; padding: 30px; font-size: 16px; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2 style="text-align: center;">🛡️ ඇමින් පාලක පුවරුව</h2>
-        <div id="requestInfo">
-            <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
-            <p><strong>දුරකථන අංකය 1:</strong> <span id="adminPhone1">-</span></p>
-            <p><strong>දුරකථන අංකය 2:</strong> <span id="adminPhone2">-</span></p>
-            <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
-            <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount">-</span></p>
-            <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
-            <p><strong>തත්වය:</strong> <b id="adminStatus" style="color: orange;">Pending</b></p>
-            
-            <button class="approved-btn" onclick="approveLoan()">Approve කරන්න</button>
+    <div class="container">
+        <div class="card">
+            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
+            <div id="requestInfo">
+                <div class="info-group">
+                    <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
+                    <p><strong>ප්‍රධාන දුරකථන අංකය:</strong> <span id="adminPhone1">-</span></p>
+                    <p><strong>දෙවන දුරකථන අංකය:</strong> <span id="adminPhone2">-</span></p>
+                    <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
+                    <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount" style="color: #ffc107; font-weight: bold;">-</span></p>
+                    <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
+                    <p><strong>තත්ත්වය:</strong> <span id="adminStatus" class="status-pending">Pending</span></p>
+                </div>
+                
+                <button id="actionBtn" class="approved-btn" onclick="approveLoan()">Approve කරන්න (අනුමත කරන්න)</button>
+            </div>
         </div>
     </div>
 
@@ -42,8 +54,13 @@
                 
                 if (data.status === 'approved') {
                     document.getElementById('adminStatus').innerText = "Approved ✅";
-                    document.getElementById('adminStatus').style.color = "lightgreen";
+                    document.getElementById('adminStatusclassName" = "status-approved";
+                    document.getElementById('adminStatus').className = "status-approved";
+                    document.getElementById('actionBtn').innerText = "දድ මං අනුමත කර ඇත";
+                    document.getElementById('actionBtn').style.background = "#6c757d";
                 }
+            } else {
+                document.getElementById('requestInfo').innerHTML = "<div class='no-data'>📥 නව ණය අයදුම්පත් කිසිවක් නොමැත.</div>";
             }
         }
 
@@ -52,7 +69,7 @@
             if (data) {
                 data.status = 'approved';
                 localStorage.setItem('customerLoan', JSON.stringify(data));
-                alert("සාර්ථකව අනුමත කරන ලදී!");
+                alert("සාර්ථකව ණය අයදුම්පත අනුමත කරන ලදී!");
                 loadAdminData();
             } else {
                 alert("අයදුම්පත් කිසිවක් නොමැත!");
