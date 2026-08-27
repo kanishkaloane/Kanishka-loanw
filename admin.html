@@ -3,124 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanishka Loan - Admin Panel</title>
+    <title>Admin Panel</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        .container {
-            max-width: 500px;
-            background: #ffffff;
-            margin: 40px auto;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-        h2 {
-            color: #0f5132;
-            margin-bottom: 20px;
-        }
-        button {
-            width: 100%;
-            background-color: #198754;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        button:hover {
-            background-color: #157347;
-        }
-        .reset-btn {
-            background-color: #dc3545;
-            margin-top: 10px;
-        }
-        .reset-btn:hover {
-            background-color: #bb2d3b;
-        }
-        .status-box {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .status-pending {
-            background-color: #e2e3e5;
-            color: #383d41;
-        }
-        .status-approved {
-            background-color: #d1e7dd;
-            color: #0f5132;
-        }
+        body { font-family: Arial, sans-serif; background: #222; color: white; padding: 20px; text-align: center; }
+        .card { background: #333; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; text-align: left; }
+        button { background: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 10px; }
+        .approved-btn { background: #28a745; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>🛠️ Admin Control Panel</h2>
-    
-    <div id="currentStatusBox" class="status-box status-pending">
-        තත්වය පරීක්ෂා කරමින් පවතී...
+    <div class="card">
+        <h2 style="text-align: center;">ඇමින් පාලක පුවරුව</h2>
+        <div id="requestInfo">
+            <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
+            <p><strong>දුරකථන අංකය:</strong> <span id="adminPhone">-</span></p>
+            <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
+            <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount">-</span></p>
+            <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
+            <p><strong>തත්වය:</strong> <b id="adminStatus" style="color: orange;">Pending</b></p>
+            
+            <button class="approved-btn" onclick="approveLoan()">Approve කරන්න</button>
+        </div>
     </div>
 
-    <p style="font-size: 14px; color: #666;" id="amountInfo">
-        කස්ටමර් ඉල්ලූ මුදල: පරීක්ෂා කරමින්...
-    </p>
-
-    <button onclick="approveUser()">✅ ණය මුදල අනුමත කරන්න (Approve)</button>
-    <button class="reset-btn" onclick="resetUser()">🔄 මුල් තත්වයට හරවන්න (Reset)</button>
-</div>
-
-<script>
-    function updateStatusDisplay() {
-        const status = localStorage.getItem('loan_user_status');
-        const amount = localStorage.getItem('loan_user_amount');
-        const box = document.getElementById('currentStatusBox');
-        const amountInfo = document.getElementById('amountInfo');
-
-        if (amount) {
-            amountInfo.innerText = "කස්ටමර් ඉල්ලූ මුදල: රු. " + Number(amount).toLocaleString() + "/=";
-        } else {
-            amountInfo.innerText = "කස්ටමර් තවම අයදුම්පතක් යොමු කර නැත.";
+    <script>
+        function loadAdminData() {
+            const data = JSON.parse(localStorage.getItem('customerLoan'));
+            if (data) {
+                document.getElementById('adminNic').innerText = data.nic;
+                document.getElementById('adminPhone').innerText = data.phone;
+                document.getElementById('adminAddress').innerText = data.address;
+                document.getElementById('adminAmount').innerText = data.amount;
+                document.getElementById('adminBank').innerText = data.bank;
+                
+                if (data.status === 'approved') {
+                    document.getElementById('adminStatus').innerText = "Approved ✅";
+                    document.getElementById('adminStatus').style.color = "lightgreen";
+                }
+            }
         }
 
-        if (status === 'approved') {
-            box.className = "status-box status-approved";
-            box.innerText = "තත්වය: ණය මුදල අනුමත කර ඇත (Approved)";
-        } else if (status === 'pending') {
-            box.className = "status-box status-pending";
-            box.innerText = "තත්වය: අයදුම්පත ලැබී ඇත (Pending)";
-        } else {
-            box.className = "status-box status-pending";
-            box.innerText = "තත්වය: කිසිදු අයදුම්පතක් නැත";
+        function approveLoan() {
+            let data = JSON.parse(localStorage.getItem('customerLoan'));
+            if (data) {
+                data.status = 'approved';
+                localStorage.setItem('customerLoan', JSON.stringify(data));
+                alert("සාර්ථකව අනුමත කරන ලදී!");
+                loadAdminData();
+            } else {
+                alert("අයදුම්පත් කිසිවක් නොමැත!");
+            }
         }
-    }
 
-    function approveUser() {
-        localStorage.setItem('loan_user_status', 'approved');
-        updateStatusDisplay();
-        alert('සාර්ථකයි! කස්ටමර්ගේ තත්වය "Approved" ලෙස වෙනස් කරන ලදී.');
-    }
-
-    function resetUser() {
-        localStorage.removeItem('loan_user_status');
-        localStorage.removeItem('loan_user_amount');
-        updateStatusDisplay();
-        alert('තත්වය මුල් තත්වයට හරවන ලදී.');
-    }
-
-    updateStatusDisplay();
-</script>
-
+        window.onload = loadAdminData;
+    </script>
 </body>
 </html>
