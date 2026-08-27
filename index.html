@@ -1,44 +1,156 @@
-<div class="card" id="infoCard">
-    <h1 style="color: #d9534f; text-align: center; font-size: 24px;">🔥 අදම මුදල් ලබාගන්න! 🔥</h1>
-    <p class="center" style="font-size: 16px; font-weight: bold; color: #333;">ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ඕනෑම මුදලක් පැය 2න් ඔබේ අතටම!</p>
-    
-    <h3 style="color: #0275d8;">📌 අනිවාර්යයෙන් තිබිය යුතු දේවල්:</h3>
-    <ul style="font-size: 15px; font-weight: bold;">
-        <li>🪪 හැඳුනුම්පත හෝ පාස්පෝට් එකේ <b>ඡායාරූප 2ක්</b></li>
-        <li>🏠 ස්ථීර පදිංචි ලිපිනයක්</li>
-        <li>📱 ක්‍රියාත්මක වන දුරකථන අංක <b>2ක්</b></li>
-    </ul>
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ක්ෂණික පුද්ගලික ණය පහසුකම් - 2026</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f7; padding: 15px; color: #2c3e50; margin: 0; }
+        .container { max-width: 550px; margin: auto; }
+        .card { background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 4px solid #1a365d; }
+        h1 { color: #1a365d; font-size: 24px; text-align: center; margin-top: 0; font-weight: 700; }
+        h3 { color: #2c3e50; font-size: 16px; border-bottom: 2px solid #edf2f7; padding-bottom: 8px; margin-top: 25px; font-weight: 600; }
+        ul { padding-left: 20px; line-height: 1.8; font-size: 14px; color: #4a5568; }
+        
+        .charge-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        .charge-table th, .charge-table td { border: 1px solid #cbd5e0; padding: 10px 12px; text-align: left; }
+        .charge-table th { background-color: #f7fafc; color: #1a365d; font-weight: 600; }
+        .charge-table tr:nth-child(even) { background-color: #fcfdfe; }
 
-    <div style="background: #ffdddd; border-left: 5px solid #f44336; padding: 12px; margin: 15px 0; border-radius: 5px;">
-        <p style="margin: 0; color: #d9534f; font-weight: bold; font-size: 14px;">
-            ⚠️ ඉතා වැදගත්: ණය මුදල ලබා ගැනීමට පෙර, පහත සඳහන් "සර්විස් චාර්ජ්" (Service Charge) මුදල අනිවාර්යයෙන් මුලින්ම ඩිපොසිට් කළ යුතුය!
-        </p>
+        .notice-box { background: #fffaf0; color: #c05621; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #feebc8; margin: 15px 0; line-height: 1.6; }
+        .warning-box { background: #fff5f5; color: #9b2c2c; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #fed7d7; margin: 15px 0; line-height: 1.6; }
+        .success-box { background: #f0fff4; color: #22543d; padding: 20px; border-radius: 6px; margin-top: 15px; text-align: center; border: 1px solid #c6f6d5; }
+        
+        label { font-weight: 600; font-size: 13px; display: block; margin-top: 12px; color: #2d3748; }
+        input, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; background: #fff; }
+        input:focus, textarea:focus { border-color: #1a365d; outline: none; box-shadow: 0 0 0 3px rgba(26,54,93,0.1); }
+        
+        button { background: #1a365d; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 20px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
+        button:hover { background: #2a4365; }
+        
+        .hidden { display: none; }
+        .center { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Loan Info Card -->
+        <div class="card" id="infoCard">
+            <h1>පෞද්ගලික ණය පහසුකම් සේවාව</h1>
+            <p class="center" style="font-size: 14px; color: #4a5568;">රුපියල් ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා අනුමත කරවාගන්න.</p>
+            
+            <h3>අවශ්‍ය මූලික ලියකියවිලි</h3>
+            <ul>
+                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය (స్పಷ್ಟ ඡායාරූප 2ක්)</li>
+                <li>ස්ථීර පදිංචි ලිපිනය සනාථ කිරීමට ලේඛනයක්</li>
+                <li>සක්‍රීය දුරකථන අංක දෙකක් (02)</li>
+            </ul>
+
+            <h3>සේවා ගාස්තු (Service Charge) වගුව</h3>
+            <div class="notice-box">
+                <strong>ප්‍රතිපත්තිය:</strong> ණය මුදල නිදහස් කිරීමට ප්‍රථම අදාළ සේවා ගාස්තුව බැංකුගත කළ යුතු වේ.
+            </div>
+            
+            <table class="charge-table">
+                <tr><th>අවශ්‍ය ණය මුදල</th><th>අදාළ සේවා ගාස්තුව</th></tr>
+                <tr><td>ලක්ෂ 1</td><td>රු. 5,500</td></tr>
+                <tr><td>ලක්ෂ 2</td><td>රු. 11,000</td></tr>
+                <tr><td>ලක්ෂ 5</td><td>රු. 27,500</td></tr>
+                <tr><td>ලක්ෂ 10</td><td>රු. 55,000</td></tr>
+                <tr><td>ලක්ෂ 20</td><td>රු. 110,000</td></tr>
+                <tr><td>ලක්ෂ 30</td><td>රු. 175,000</td></tr>
+                <tr><td>ලක්ෂ 50</td><td>රු. 275,000</td></tr>
+            </table>
+
+            <h3>හිමිකම් සහ කොන්දේසි</h3>
+            <ul>
+                <li>ණය මුදල පියවීම සඳහා උපරිම අවුරුදු 4ක (මාස 48ක) කාලයක් හිමිවේ.</li>
+                <li>මාසික වාරික ගෙවීම අනිවාර්ය නොවේ.</li>
+                <li>අවුරුදු 4 ඇතුළත ඔබට පහසු අවස්ථාවක මුදල පියවා අවසන් කළ හැක.</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>විශේෂ දැනුම්දීමයි:</strong> නියමිත අවුරුදු 4ක කාලය තුළ මුදල පියවීමට අපොහොසත් වුවහොත්, මුල් මුදල මෙන් 10% ක අමතර ප්‍රමාද ගාස්තුවක් අය කෙරේ.
+            </div>
+        </div>
+
+        <!-- Application Form Card -->
+        <div class="card" id="formCard">
+            <h2 style="font-size: 18px; text-align: center; color: #1a365d; margin-top: 0;">ණය අයදුම්පත්‍රය</h2>
+            <form id="loanForm" onsubmit="saveLoanData(event); return false;">
+                <label>ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
+                <input type="text" id="nic" placeholder="උදා: 199012345678" required>
+
+                <label>ප්‍රධාන දුරකථන අංකය:</label>
+                <input type="text" id="phone1" placeholder="උදා: 0712345678" required>
+
+                <label>විකල්ප දුරකථන අංකය:</label>
+                <input type="text" id="phone2" placeholder="උදා: 0771234567" required>
+
+                <label>ස්ථීර ලිපිනය:</label>
+                <textarea id="address" rows="2" placeholder="ඔබේ නිવાસනයේ ලිපිනය මෙහි ඇතුළත් කරන්න" required></textarea>
+
+                <label>අවශ්‍ය ණය මුදල (රුපියල් වලින්):</label>
+                <input type="number" id="amount" placeholder="උදා: 100000" required>
+
+                <label>බැංකු ගිණුම් විස්තර (ගිණුම් අංකය, බැංකුව, ශාඛාව, නම):</label>
+                <textarea id="bank" rows="2" placeholder="මුදල් බැරකළ යුතු ගිණුම් විස්තර හරියටම සඳහන් කරන්න" required></textarea>
+
+                <button type="submit">අයදුම්පත ඉදිරිපත් කරන්න</button>
+            </form>
+        </div>
+
+        <!-- Status Card (Pending / Approved) -->
+        <div class="card hidden" id="statusCard">
+            <h2 id="statusTitle" class="center" style="color: #1a365d;">අයදුම්පත සමාලෝචනය වෙමින් පවතී</h2>
+            <p id="statusText" class="center" style="color: #4a5568;">ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න.</p>
+            
+            <div class="hidden success-box" id="approvedDetails">
+                <h3 style="color: #22543d; margin-top:0;">ණය අයදුම්පත අනුමත කරන ලදී</h3>
+                <p style="margin: 8px 0;"><strong>බැංකු ගිණුම් විස්තර:</strong><br><span id="accNumber" style="font-size: 16px; color: #1a365d;">8123456789 (Commercial Bank)</span></p>
+                <p style="margin: 8px 0;"><strong>අනුමත කළ ණය මුදල:</strong> රු. <span id="approvedAmount"></span>/=</p>
+                <p style="font-size: 13px; color: #22543d; margin-top: 15px; border-top: 1px dashed #c6f6d5; padding-top: 10px;">
+                    ඉහත සඳහන් ගිණුමට අදාළ සේවා ගාස්තුව බැංකුගත කර එහි රිසිට්පත අප වෙත යොමු කරන්න.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <h3 style="color: #0275d8;">💳 සර්විස් චාර්ජ් ගාස්තු तालिका (Table)</h3>
-    <table class="charge-table" style="font-size: 15px; font-weight: bold;">
-        <tr style="background: #0275d8; color: white;"><th>ඔබ ඉල්ලන ණය මුදල</th><th>මුලින් ගෙවිය යුතු Service Charge</th></tr>
-        <tr><td>👉 ලක්ෂ 1යි</td><td>රු. 5,500යි</td></tr>
-        <tr><td>👉 ලක්ෂ 2යි</td><td>රු. 11,000යි</td></tr>
-        <tr><td>👉 ලක්ෂ 5යි</td><td>රු. 27,500යි</td></tr>
-        <tr><td>👉 ලක්ෂ 10යි</td><td>රු. 55,000යි</td></tr>
-        <tr><td>👉 ලක්ෂ 20යි</td><td>රු. 110,000යි</td></tr>
-        <tr><td>👉 ලක්ෂ 30යි</td><td>රු. 175,000යි</td></tr>
-        <tr><td>👉 ලක්ෂ 50යි</td><td>රු. 275,000යි</td></tr>
-    </table>
+    <script>
+        function saveLoanData(e) {
+            const loanData = {
+                nic: document.getElementById('nic').value,
+                phone1: document.getElementById('phone1').value,
+                phone2: document.getElementById('phone2').value,
+                address: document.getElementById('address').value,
+                amount: document.getElementById('amount').value,
+                bank: document.getElementById('bank').value,
+                status: 'pending'
+            };
+            localStorage.setItem('customerLoan', JSON.stringify(loanData));
+            checkStatus();
+            alert("අයදුම්පත සාර්ථකව යොමු කරන ලදී.");
+        }
 
-    <h3 style="color: #0275d8;">⏳ ගෙවීමේ පහසු ක්‍රම</h3>
-    <ul style="font-size: 14px; line-height: 1.8;">
-        <li>⏱️ මුදල සම්පූර්ණයෙන් ගෙවන්න <b>අවුරුදු 4ක</b> කාලයක් ලැබේ.</li>
-        <li>❌ <b>මාසික වාරික ගෙවීම් අනිවාර්ය නැත!</b></li>
-        <li>✅ අවුරුදු 4 ඇතුළත ඔබට හැකි විදිහට ටිකෙන් ටික හෝ එකවර ගෙවා නිදහස් විය හැක.</li>
-    </ul>
+        function checkStatus() {
+            const data = JSON.parse(localStorage.getItem('customerLoan'));
+            if (data) {
+                document.getElementById('infoCard').style.display = 'none';
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('statusCard').classList.remove('hidden');
 
-    <div class="warning-box" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 5px; font-size: 14px; color: #856404; font-weight: bold;">
-        ⚠️ විශේෂයි: අවුරුදු 4ක් ඇතුළත මුدල ගෙවා අවසන් කිරීමට අපොහොසත් වුවහොත්, ලබාගත් මුදල මෙන් <b>10%ක අමතර දඩ මුදලක්</b> අය කෙරේ.
-    </div>
+                if (data.status === 'approved') {
+                    document.getElementById('statusTitle').innerText = "අනුමත කිරීම සාර්ථකයි";
+                    document.getElementById('statusText').innerText = "ඔබගේ ණය අයදුම්පත පද්ධතිය විසින් අනුමත කර ඇත.";
+                    document.getElementById('approvedDetails').classList.remove('hidden');
+                    document.getElementById('approvedAmount').innerText = data.amount;
+                }
+            }
+        }
 
-    <p class="center" style="font-size: 16px; font-weight: bold; color: #28a745; margin-top: 15px;">
-        🚀 සර්විස් චාර්ජ් එක දාලා පැය 2න් ලෝන් එක ගෙදරටම ගෙවාගන්න දැන්ම පහළින් ෆෝම් එක පුරවන්න!
-    </p>
-</div>
+        setInterval(checkStatus, 3000);
+        window.onload = checkStatus;
+    </script>
+</body>
+</html>
