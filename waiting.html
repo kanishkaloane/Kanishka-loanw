@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo Status</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef2f7;margin:0;padding:18px}.card{max-width:520px;margin:25px auto;background:#fff;padding:28px;border-radius:14px;text-align:center;box-shadow:0 4px 20px #0001}
+h1{color:#1a365d}.status{padding:22px;background:#f1f3f5;border-radius:12px;font-size:18px}
+.demo{background:#fff7d6;padding:10px;border-radius:8px}
+</style></head><body>
+<div class="card"><div class="demo">DEMO ONLY</div><h1>⏳ Application Status</h1>
+<div id="status" class="status">Admin review එක බලාපොරොත්තුවෙන්...</div></div>
+<script>
+function check(){
+ const d=JSON.parse(localStorage.getItem("demoLoan")||"null");
+ if(d && d.status==="Approved"){
+   document.getElementById("status").innerHTML="<h2>✅ Demo Application Approved</h2><p>ඔබගේ demo application එක අනුමත කර ඇත.</p>";
+ }
+}
+check(); setInterval(check,1500);
+</script></body></html>

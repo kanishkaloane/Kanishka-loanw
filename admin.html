@@ -1,82 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="si">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - ණය කළමනාකරණය</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e2f; color: #fff; padding: 20px; margin: 0; }
-        .container { max-width: 500px; margin: auto; }
-        .card { background: #2a2a40; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        h2 { text-align: center; color: #4e73df; margin-top: 0; }
-        .info-group { background: #1e1e2f; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #4e73df; }
-        p { margin: 8px 0; font-size: 14px; word-break: break-all; }
-        strong { color: #b0bec5; }
-        button { background: #e74a3b; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; transition: 0.3s; }
-        button:hover { opacity: 0.9; }
-        .approved-btn { background: #1cc88a; }
-        .status-pending { color: #f6c23e; font-weight: bold; }
-        .status-approved { color: #1cc88a; font-weight: bold; }
-        .no-data { text-align: center; color: #aaa; padding: 30px; font-size: 16px; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="card">
-            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
-            <div id="requestInfo">
-                <div class="info-group">
-                    <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
-                    <p><strong>ප්‍රධාන දුරකථන අංකය:</strong> <span id="adminPhone1">-</span></p>
-                    <p><strong>දෙවන දුරකථන අංකය:</strong> <span id="adminPhone2">-</span></p>
-                    <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
-                    <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount" style="color: #ffc107; font-weight: bold;">-</span></p>
-                    <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
-                    <p><strong>තත්ත්වය:</strong> <span id="adminStatus" class="status-pending">Pending</span></p>
-                </div>
-                
-                <button id="actionBtn" class="approved-btn" onclick="approveLoan()">Approve කරන්න (අනුමත කරන්න)</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function loadAdminData() {
-            const data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                document.getElementById('adminNic').innerText = data.nic;
-                document.getElementById('adminPhone1').innerText = data.phone1;
-                document.getElementById('adminPhone2').innerText = data.phone2;
-                document.getElementById('adminAddress').innerText = data.address;
-                document.getElementById('adminAmount').innerText = data.amount;
-                document.getElementById('adminBank').innerText = data.bank;
-                
-                if (data.status === 'approved') {
-                    document.getElementById('adminStatus').innerText = "Approved ✅";
-                    document.getElementById('adminStatusclassName" = "status-approved";
-                    document.getElementById('adminStatus').className = "status-approved";
-                    document.getElementById('actionBtn').innerText = "දድ මං අනුමත කර ඇත";
-                    document.getElementById('actionBtn').style.background = "#6c757d";
-                }
-            } else {
-                document.getElementById('requestInfo').innerHTML = "<div class='no-data'>📥 නව ණය අයදුම්පත් කිසිවක් නොමැත.</div>";
-            }
-        }
-
-        function approveLoan() {
-            let data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                data.status = 'approved';
-                localStorage.setItem('customerLoan', JSON.stringify(data));
-                alert("සාර්ථකව ණය අයදුම්පත අනුමත කරන ලදී!");
-                loadAdminData();
-            } else {
-                alert("අයදුම්පත් කිසිවක් නොමැත!");
-            }
-        }
-
-        window.onload = loadAdminData;
-    </script>
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Demo</title>
+<style>
+body{font-family:Arial,sans-serif;background:#1e1e2f;color:#fff;margin:0;padding:18px}.card{max-width:520px;margin:25px auto;background:#2a2a40;padding:24px;border-radius:14px}
+h2{text-align:center;color:#8fb3ff}.demo{background:#fff7d6;color:#333;padding:12px;border-radius:8px;text-align:center}
+input,button{width:100%;box-sizing:border-box;padding:12px;margin-top:10px;border-radius:7px;border:0}
+button{background:#1cc88a;color:white;font-weight:bold;font-size:16px}
+#panel{display:none}.info{background:#1e1e2f;padding:15px;border-radius:8px;margin-top:15px}
+</style></head><body>
+<div class="card">
+<div class="demo">DEMO ADMIN — not secure authentication</div>
+<h2>🛡️ Admin Demo Panel</h2>
+<div id="login">
+<input id="pw" type="password" placeholder="Demo password">
+<button onclick="login()">Login</button>
+</div>
+<div id="panel">
+<div id="data" class="info">No demo application.</div>
+<button onclick="approve()">Approve Demo Application</button>
+</div>
+</div>
+<script>
+function login(){
+ if(document.getElementById("pw").value==="demo123"){
+   document.getElementById("login").style.display="none";
+   document.getElementById("panel").style.display="block";
+   load();
+ } else alert("Demo password incorrect.");
+}
+function load(){
+ const d=JSON.parse(localStorage.getItem("demoLoan")||"null");
+ document.getElementById("data").innerHTML=d?
+ `<p><b>Name:</b> ${d.name}</p><p><b>Reference:</b> ${d.ref}</p><p><b>Amount:</b> Rs. ${d.amount}</p><p><b>Status:</b> ${d.status}</p>`
+ : "No demo application.";
+}
+function approve(){
+ const d=JSON.parse(localStorage.getItem("demoLoan")||"null");
+ if(!d) return alert("No demo application.");
+ d.status="Approved";
+ localStorage.setItem("demoLoan",JSON.stringify(d));
+ load();
+ alert("Demo application approved.");
+}
+</script></body></html>
