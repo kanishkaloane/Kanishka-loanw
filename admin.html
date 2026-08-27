@@ -1,1 +1,97 @@
 
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ඇමින් පාලක පුවරුව - ණය පද්ධතිය</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a202c; padding: 15px; color: #fff; margin: 0; }
+        .container { max-width: 550px; margin: auto; }
+        .card { background: #2d3748; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-top: 20px; border-top: 5px solid #e53e3e; }
+        h2 { text-align: center; margin-top: 0; color: #fff; }
+        p { font-size: 15px; line-height: 1.6; margin: 8px 0; }
+        
+        button { background: #0f4c81; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 15px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
+        .approve-btn { background: #38a169; }
+        .approve-btn:hover { background: #2f855a; }
+        .reset-btn { background: #e53e3e; }
+        .reset-btn:hover { background: #c53030; }
+
+        .hidden { display: none; }
+        .center { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
+            <div id="adminNoData" class="center" style="color: #a0aec0; padding: 30px;">
+                තවම නව අයදුම්පත් ලැබී නැත.
+            </div>
+            <div id="adminDataContent" class="hidden">
+                <p><strong>නම:</strong> <span id="admName" style="color: #63b3ed; font-weight: bold;"></span></p>
+                <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="admNic"></span></p>
+                <p><strong>දුරකථන 1:</strong> <span id="admPhone1"></span></p>
+                <p><strong>දුරකථන 2:</strong> <span id="admPhone2"></span></p>
+                <p><strong>ලිපිනය:</strong> <span id="admAddress"></span></p>
+                <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="admAmount" style="color: #4fd1c5; font-weight: bold;"></span></p>
+                <p><strong>බැංකු විස්තර:</strong> <span id="admBank"></span></p>
+                <p><strong>තත්ත්වය:</strong> <span id="admStatus" style="font-weight: bold; color: #f6ad55;"></span></p>
+                
+                <button class="approve-btn" onclick="approveLoan()">මෙම අයදුම්පත අනුමත කරන්න (Approve)</button>
+                <button class="reset-btn" onclick="clearData()">අයදුම්පත ඉවත් කරන්න (Reset)</button>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" style="color: #63b3ed; text-decoration: none; font-size: 14px;">← පාරිභෝගික පිටුවට (Home) යන්න</a>
+        </div>
+    </div>
+
+    <script>
+        function loadAdmin() {
+            const data = JSON.parse(localStorage.getItem('realCustomerLoan'));
+            const noData = document.getElementById('adminNoData');
+            const content = document.getElementById('adminDataContent');
+
+            if (data) {
+                noData.classList.add('hidden');
+                content.classList.remove('hidden');
+                document.getElementById('admName').innerText = data.name;
+                document.getElementById('admNic').innerText = data.nic;
+                document.getElementById('admPhone1').innerText = data.phone1;
+                document.getElementById('admPhone2').innerText = data.phone2;
+                document.getElementById('admAddress').innerText = data.address;
+                document.getElementById('admAmount').innerText = data.amount;
+                document.getElementById('admBank').innerText = data.bank;
+                document.getElementById('admStatus').innerText = data.status;
+            } else {
+                noData.classList.remove('hidden');
+                content.classList.add('hidden');
+            }
+        }
+
+        function approveLoan() {
+            const data = JSON.parse(localStorage.getItem('realCustomerLoan'));
+            if (data) {
+                data.status = 'Approved';
+                localStorage.setItem('realCustomerLoan', JSON.stringify(data));
+                loadAdmin();
+                alert("අයදුම්පත සාර්ථකව අනුමත කරන ලදී!");
+            }
+        }
+
+        function clearData() {
+            if(confirm("ඔබට විශ්වාසද මෙම දත්ත මකා දැමීමට අවශ්‍ය බව?")) {
+                localStorage.removeItem('realCustomerLoan');
+                loadAdmin();
+                alert("දත්ත සාර්ථකව ඉවත් කරන ලදී.");
+            }
+        }
+
+        setInterval(loadAdmin, 2000);
+        window.onload = loadAdmin;
+    </script>
+</body>
+</html>
