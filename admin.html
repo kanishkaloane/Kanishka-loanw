@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Panel - ණය කළමනාකරණය</title>
     <style>
         body { font-family: Arial, sans-serif; background: #222; color: white; padding: 20px; text-align: center; }
-        .card { background: #333; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; text-align: left; }
-        button { background: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 10px; }
+        .card { background: #333; padding: 20px; border-radius: 10px; max-width: 450px; margin: auto; text-align: left; box-shadow: 0px 0px 10px rgba(255,255,255,0.1); }
+        button { background: #dc3545; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 15px; }
         .approved-btn { background: #28a745; }
+        p { margin: 8px 0; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h2 style="text-align: center;">ඇමින් පාලක පුවරුව</h2>
+        <h2 style="text-align: center;">🛡️ ඇමින් පාලක පුවරුව</h2>
         <div id="requestInfo">
             <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="adminNic">-</span></p>
-            <p><strong>දුරකථන අංකය:</strong> <span id="adminPhone">-</span></p>
+            <p><strong>දුරකථන අංකය 1:</strong> <span id="adminPhone1">-</span></p>
+            <p><strong>දුරකථන අංකය 2:</strong> <span id="adminPhone2">-</span></p>
             <p><strong>ලිපිනය:</strong> <span id="adminAddress">-</span></p>
             <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="adminAmount">-</span></p>
             <p><strong>බැංකු විස්තර:</strong> <span id="adminBank">-</span></p>
@@ -32,7 +34,8 @@
             const data = JSON.parse(localStorage.getItem('customerLoan'));
             if (data) {
                 document.getElementById('adminNic').innerText = data.nic;
-                document.getElementById('adminPhone').innerText = data.phone;
+                document.getElementById('adminPhone1').innerText = data.phone1;
+                document.getElementById('adminPhone2').innerText = data.phone2;
                 document.getElementById('adminAddress').innerText = data.address;
                 document.getElementById('adminAmount').innerText = data.amount;
                 document.getElementById('adminBank').innerText = data.bank;
