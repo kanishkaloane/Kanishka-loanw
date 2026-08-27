@@ -8,9 +8,7 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f7; padding: 15px; color: #2c3e50; margin: 0; }
         .container { max-width: 550px; margin: auto; }
         .card { background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 4px solid #1a365d; }
-        .admin-card { background: #1a202c; color: #fff; border-top: 4px solid #e53e3e; }
         h1, h2 { color: #1a365d; text-align: center; margin-top: 0; font-weight: 700; }
-        .admin-card h2 { color: #fff; }
         h3 { color: #2c3e50; font-size: 16px; border-bottom: 2px solid #edf2f7; padding-bottom: 8px; margin-top: 25px; font-weight: 600; }
         ul { padding-left: 20px; line-height: 1.8; font-size: 14px; color: #4a5568; }
         
@@ -24,18 +22,11 @@
         .success-box { background: #f0fff4; color: #22543d; padding: 20px; border-radius: 6px; margin-top: 15px; border: 1px solid #c6f6d5; }
         
         label { font-weight: 600; font-size: 13px; display: block; margin-top: 12px; color: #2d3748; }
-        .admin-card label { color: #e2e8f0; }
         input, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; background: #fff; }
         input:focus, textarea:focus { border-color: #1a365d; outline: none; box-shadow: 0 0 0 3px rgba(26,54,93,0.1); }
         
         button { background: #1a365d; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 20px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
         button:hover { background: #2a4365; }
-        
-        .approve-btn { background: #38a169; }
-        .approve-btn:hover { background: #2f855a; }
-        
-        .reset-btn { background: #e53e3e; margin-top: 15px; }
-        .reset-btn:hover { background: #c53030; }
 
         .hidden { display: none; }
         .center { text-align: center; }
@@ -53,7 +44,7 @@
                 <h3 style="color: #22543d; margin-top:0; text-align: center;">✅ ණය අනුමත විය!</h3>
                 
                 <div style="background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #c6f6d5; margin-top: 10px;">
-                    <p style="margin: 8px 0; font-size: 15px;"><strong>அනුමත කළ ණය මුදල:</strong> රු. <span id="approvedAmount" style="font-weight: bold; color: #2b6cb0; font-size: 18px;"></span>/=</p>
+                    <p style="margin: 8px 0; font-size: 15px;"><strong>අනුමත කළ ණය මුදල:</strong> රු. <span id="approvedAmount" style="font-weight: bold; color: #2b6cb0; font-size: 18px;"></span>/=</p>
                     <p style="margin: 8px 0; font-size: 15px;"><strong>ගෙවිය යුතු Service Charge (සේවා ගාස්තුව):</strong> රු. <span id="approvedCharge" style="font-weight: bold; color: #c05621; font-size: 18px;"></span>/=</p>
                     <hr style="border: 0; border-top: 1px dashed #cbd5e0; margin: 12px 0;">
                     <p style="margin: 6px 0;"><strong>බැංකු ගිණුම් විස්තර:</strong></p>
@@ -76,7 +67,7 @@
             
             <h3>අවශ්‍ය මූලික ලියකියවිලි</h3>
             <ul>
-                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය (స్పష్ట ඡායාරූප 2ක්)</li>
+                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය (ಸ್ಪష్ట ඡායාරූප 2ක්)</li>
                 <li>ස්ථීර පදිංචි ලිපිනය සනාථ කිරීමට ලේඛනයක්</li>
                 <li>සක්‍රීය දුරකථන අංක දෙකක් (02)</li>
             </ul>
@@ -134,45 +125,23 @@
                 <button type="submit">අයදුම්පත ඉදිරිපත් කරන්න</button>
             </form>
         </div>
-
-        <!-- Admin Panel Card -->
-        <div class="card admin-card" id="adminCard">
-            <h2>🛡️ ඇමින් පාලක පුවරුව</h2>
-            <div id="adminNoData" class="center" style="color: #a0aec0; padding: 20px;">
-                තවම නව අයදුම්පත් ලැබී නැත.
-            </div>
-            <div id="adminDataContent" class="hidden">
-                <p><strong>ජා.හැ. අංකය (NIC):</strong> <span id="admNic"></span></p>
-                <p><strong>දුරකථන 1:</strong> <span id="admPhone1"></span></p>
-                <p><strong>දුරකථන 2:</strong> <span id="admPhone2"></span></p>
-                <p><strong>ලිපිනය:</strong> <span id="admAddress"></span></p>
-                <p><strong>ඉල්ලූ මුදල:</strong> රු. <span id="admAmount"></span></p>
-                <p><strong>බැංකු විස්තර:</strong> <span id="admBank"></span></p>
-                <p><strong>තත්ත්වය:</strong> <span id="admStatus" style="font-weight: bold;"></span></p>
-                
-                <button class="approve-btn" onclick="approveLoan()">Approve කරන්න (අනුමත කරන්න)</button>
-                <button class="reset-btn" onclick="clearData()">ඩේටා මකන්න (Reset)</button>
-            </div>
-        </div>
     </div>
 
     <script>
-        // සේවා ගාස්තු ස්වයංක්‍රීයව ගණනය කිරීම සඳහා වගුව
         function calculateCharge(loanAmount) {
             const amt = Number(loanAmount);
-            // ආසන්නතම හෝ සමාන ණය මුදලට අදාළ ගාස්තුව ලබා දීම
             if (amt <= 100000) return "5,500";
             if (amt <= 200000) return "11,000";
             if (amt <= 500000) return "27,500";
             if (amt <= 1000000) return "55,000";
             if (amt <= 2000000) return "110,000";
             if (amt <= 3000000) return "175,000";
-            return "275,000"; // ලක්ෂ 50 හෝ වැඩි නම්
+            return "275,000";
         }
 
         function saveLoanData(e) {
             const rawAmount = document.getElementById('amount').value;
-            const formattedAmount = Number(rawAmount).toLocaleString('en-US'); // අංක ලස්සනට කොමා සමඟ සකස් කිරීමට (උදා: 1,000,000)
+            const formattedAmount = Number(rawAmount).toLocaleString('en-US');
             const calculatedCharge = calculateCharge(rawAmount);
 
             const loanData = {
@@ -181,7 +150,6 @@
                 phone2: document.getElementById('phone2').value,
                 address: document.getElementById('address').value,
                 amount: formattedAmount,
-                rawAmount: rawAmount,
                 charge: calculatedCharge,
                 bank: document.getElementById('bank').value,
                 status: 'Pending'
@@ -195,21 +163,9 @@
         function loadData() {
             const data = JSON.parse(localStorage.getItem('customerLoan'));
             const statusCard = document.getElementById('statusCard');
-            const adminNoData = document.getElementById('adminNoData');
-            const adminDataContent = document.getElementById('adminDataContent');
             const approvedDetails = document.getElementById('approvedDetails');
 
             if (data) {
-                adminNoData.classList.add('hidden');
-                adminDataContent.classList.remove('hidden');
-                document.getElementById('admNic').innerText = data.nic;
-                document.getElementById('admPhone1').innerText = data.phone1;
-                document.getElementById('admPhone2').innerText = data.phone2;
-                document.getElementById('admAddress').innerText = data.address;
-                document.getElementById('admAmount').innerText = data.amount;
-                document.getElementById('admBank').innerText = data.bank;
-                document.getElementById('admStatus').innerText = data.status;
-
                 statusCard.classList.remove('hidden');
                 if (data.status === 'Approved') {
                     document.getElementById('statusMainTitle').innerText = "සාර්ථකයි!";
@@ -224,25 +180,7 @@
                 }
             } else {
                 statusCard.classList.add('hidden');
-                adminNoData.classList.remove('hidden');
-                adminDataContent.classList.add('hidden');
             }
-        }
-
-        function approveLoan() {
-            const data = JSON.parse(localStorage.getItem('customerLoan'));
-            if (data) {
-                data.status = 'Approved';
-                localStorage.setItem('customerLoan', JSON.stringify(data));
-                loadData();
-                alert("ණය අයදුම්පත සාර්ථකව අනුමත කරන ලදී!");
-            }
-        }
-
-        function clearData() {
-            localStorage.removeItem('customerLoan');
-            loadData();
-            location.reload();
         }
 
         setInterval(loadData, 3000);
