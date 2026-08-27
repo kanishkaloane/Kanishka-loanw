@@ -1,18 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="si">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Demo Loan Site</title>
-<style>
-body{font-family:Arial,sans-serif;background:#eef2f7;margin:0;padding:18px;color:#263238}
-.card{max-width:520px;margin:25px auto;background:white;padding:24px;border-radius:14px;box-shadow:0 4px 20px #0001}
-h1,h2{text-align:center;color:#1a365d}.btn{display:block;text-align:center;background:#1a365d;color:white;text-decoration:none;padding:13px;border-radius:8px;margin-top:18px}
-.demo{background:#fff7d6;padding:12px;border-radius:8px;text-align:center}
-</style></head><body>
-<div class="card">
-<div class="demo">DEMO / TEST WEBSITE — No real financial transactions</div>
-<h1>💰 පුද්ගලික ණය පහසුකම්</h1>
-<p>මෙය demonstration website එකකි. පහත විස්තර කියවා Demo Application එක ඉදිරිපත් කරන්න.</p>
-<ul><li>Demo application process</li><li>Admin review simulation</li><li>Approval result screen</li></ul>
-<a class="btn" href="apply.html">ඉදිරියට යන්න</a>
-</div></body></html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>පෞද්ගලික ණය පහසුකම් - ශ්‍රී ලංකා</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; padding: 15px; color: #333; margin: 0; }
+        .container { max-width: 550px; margin: auto; }
+        .card { background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 5px solid #0f4c81; }
+        h1, h2 { color: #0f4c81; text-align: center; margin-top: 0; }
+        h3 { color: #2c3e50; font-size: 16px; border-bottom: 2px solid #edf2f7; padding-bottom: 8px; margin-top: 25px; }
+        ul { padding-left: 20px; line-height: 1.8; font-size: 14px; color: #555; }
+        
+        .charge-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        .charge-table th, .charge-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: left; }
+        .charge-table th { background-color: #f7fafc; color: #0f4c81; }
+
+        .notice-box { background: #fffaf0; color: #c05621; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #feebc8; margin: 15px 0; line-height: 1.6; }
+        .warning-box { background: #fff5f5; color: #9b2c2c; padding: 15px; border-radius: 6px; font-size: 13px; border: 1px solid #fed7d7; margin: 15px 0; line-height: 1.6; }
+        .success-box { background: #f0fff4; color: #22543d; padding: 20px; border-radius: 6px; margin-top: 15px; border: 1px solid #c6f6d5; }
+        
+        label { font-weight: 600; font-size: 13px; display: block; margin-top: 12px; color: #2d3748; }
+        input, textarea { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        input:focus, textarea:focus { border-color: #0f4c81; outline: none; box-shadow: 0 0 0 3px rgba(15,76,129,0.1); }
+        
+        button { background: #0f4c81; color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 20px; padding: 12px; border-radius: 6px; width: 100%; transition: background 0.2s; }
+        button:hover { background: #1b365d; }
+
+        .hidden { display: none; }
+        .center { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Status Card -->
+        <div class="card hidden" id="statusCard">
+            <h2 id="statusMainTitle" class="center">අයදුම්පත සමාලෝචනය වෙමින් පවතී</h2>
+            <p id="statusSubText" class="center" style="color: #666;">ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න.</p>
+            
+            <div class="success-box hidden" id="approvedDetails">
+                <h3 style="color: #22543d; margin-top:0; text-align: center;">✅ ණය අනුමත විය!</h3>
+                <div style="background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #c6f6d5; margin-top: 10px;">
+                    <p style="margin: 8px 0;"><strong>අනුමත කළ ණය මුදල:</strong> රු. <span id="approvedAmount" style="font-weight: bold; color: #0f4c81; font-size: 18px;"></span>/=</p>
+                    <p style="margin: 8px 0;"><strong>සේවා ගාස්තුව (Service Charge):</strong> රු. <span id="approvedCharge" style="font-weight: bold; color: #c05621; font-size: 18px;"></span>/=</p>
+                    <hr style="border: 0; border-top: 1px dashed #cbd5e0; margin: 12px 0;">
+                    <p style="margin: 6px 0;"><strong>බැංකු ගිණුම් විස්තර:</strong></p>
+                    <p style="margin: 4px 0;">• ගිණුම් අංකය: <span style="font-weight: bold; color: #0f4c81;">89081118</span></p>
+                    <p style="margin: 4px 0;">• බැංකුව: <span style="font-weight: bold;">BOC (Bank of Ceylon)</span></p>
+                    <p style="margin: 4px 0;">• නම: <span style="font-weight: bold;">I Senanayaka</span></p>
+                    <p style="margin: 4px 0;">• ශාඛාව: <span style="font-weight: bold;">Nugegoda</span></p>
+                </div>
+                <p style="font-size: 13px; color: #22543d; margin-top: 15px; text-align: center; line-height: 1.5;">
+                    ඉහත අනුමත කළ ණය මුදල ලබා ගැනීමට ප්‍රථම, අදාළ සේවා ගාස්තුව ඉහත BOC ගිණුමට බැංකුගත කර රිසිට්පත එවන්න.
+                </p>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="card">
+            <h1>පෞද්ගලික ණය පහසුකම්</h1>
+            <p class="center" style="font-size: 14px; color: #666;">රුපියල් ලක්ෂ 1 සිට ලක්ෂ 50 දක්වා ඉක්මනින් අනුමත කරවාගන්න.</p>
+            
+            <h3>අවශ්‍ය මූලික ලියකියවිලි</h3>
+            <ul>
+                <li>ජාතික හැඳුනුම්පත හෝ විදේශ ගමන් බලපත්‍රය</li>
+                <li>ස්ථීර පදිංචි ලිපිනය සනාථ කිරීමට ලේඛනයක්</li>
+                <li>සක්‍රීය දුරකථන අංක දෙකක්</li>
+            </ul>
+
+            <h3>සේවා ගාස්තු වගුව</h3>
+            <div class="notice-box">
+                <strong>ප්‍රතිපත්තිය:</strong> ණය මුදල නිදහස් කිරීමට ප්‍රථම අදාළ සේවා ගාස්තුව බැංකුගත කළ යුතු වේ.
+            </div>
+            
+            <table class="charge-table">
+                <tr><th>අවශ්‍ය ණය මුදල</th><th>අදාළ සේවා ගාස්තුව</th></tr>
+                <tr><td>ලක්ෂ 1</td><td>රු. 5,500</td></tr>
+                <tr><td>ලක්ෂ 2</td><td>රු. 11,000</td></tr>
+                <tr><td>ලක්ෂ 5</td><td>රු. 27,500</td></tr>
+                <tr><td>ලක්ෂ 10</td><td>රු. 55,000</td></tr>
+                <tr><td>ලක්ෂ 20</td><td>රු. 110,000</td></tr>
+                <tr><td>ලක්ෂ 30</td><td>රු. 175,000</td></tr>
+                <tr><td>ලක්ෂ 50</td><td>රු. 275,000</td></tr>
+            </table>
+
+            <h3>කොන්දේසි</h3>
+            <ul>
+                <li>ණය මුදල පියවීම සඳහා උපරිම අවුරුදු 4ක කාලයක් හිමිවේ.</li>
+                <li>මාසික වාරික ගෙවීම අනිවාර්ය නොවේ.</li>
+            </ul>
+        </div>
+
+        <!-- Form Card -->
+        <div class="card">
+            <h2>ණය අයදුම්පත්‍රය</h2>
+            <form id="loanForm" onsubmit="submitLoan(event); return false;">
+                <label>සම්පූර්ණ නම:</label>
+                <input type="text" id="fullname" placeholder="ඔබේ නම මෙහි ලියන්න" required>
+
+                <label>ජාතික හැඳුනුම්පත් අංකය (NIC):</label>
+                <input type="text" id="nic" placeholder="උදා: 199012345678" required>
+
+                <label>ප්‍රධාන දුරකථන අංකය:</label>
+                <input type="text" id="phone1" placeholder="උදා: 0712345678" required>
+
+                <label>විකල්ප දුරකථන අංකය:</label>
+                <input type="text" id="phone2" placeholder="උදා: 0771234567" required>
+
+                <label>ස්ථීර ලිපිනය:</label>
+                <textarea id="address" rows="2" placeholder="ලිපිනය මෙහි ඇතුළත් කරන්න" required></textarea>
+
+                <label>අවශ්‍ය ණය මුදල (රුපියල් වලින්):</label>
+                <input type="number" id="amount" placeholder="උදා: 1000000" required>
+
+                <label>බැංකු ගිණුම් විස්තර:</label>
+                <textarea id="bank" rows="2" placeholder="ගිණුම් අංකය, බැංකුව, ශාඛාව" required></textarea>
+
+                <button type="submit">අයදුම්පත ඉදිරිපත් කරන්න</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function getCharge(amt) {
+            const n = Number(amt);
+            if (n <= 100000) return "5,500";
+            if (n <= 200000) return "11,000";
+            if (n <= 500000) return "27,500";
+            if (n <= 1000000) return "55,000";
+            if (n <= 2000000) return "110,000";
+            if (n <= 3000000) return "175,000";
+            return "275,000";
+        }
+
+        function submitLoan(e) {
+            const rawAmt = document.getElementById('amount').value;
+            const loanData = {
+                name: document.getElementById('fullname').value,
+                nic: document.getElementById('nic').value,
+                phone1: document.getElementById('phone1').value,
+                phone2: document.getElementById('phone2').value,
+                address: document.getElementById('address').value,
+                amount: Number(rawAmt).toLocaleString('en-US'),
+                charge: getCharge(rawAmt),
+                bank: document.getElementById('bank').value,
+                status: 'Pending'
+            };
+            localStorage.setItem('realCustomerLoan', JSON.stringify(loanData));
+            checkStatus();
+            alert("අයදුම්පත සාර්ථකව යොමු කරන ලදී!");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkStatus() {
+            const data = JSON.parse(localStorage.getItem('realCustomerLoan'));
+            const statusCard = document.getElementById('statusCard');
+            const approvedDetails = document.getElementById('approvedDetails');
+
+            if (data) {
+                statusCard.classList.remove('hidden');
+                if (data.status === 'Approved') {
+                    document.getElementById('statusMainTitle').innerText = "සාර්ථකයි!";
+                    document.getElementById('statusSubText').innerText = "ඔබගේ ණය අයදුම්පත අනුමත කර ඇත.";
+                    approvedDetails.classList.remove('hidden');
+                    document.getElementById('approvedAmount').innerText = data.amount;
+                    document.getElementById('approvedCharge').innerText = data.charge;
+                } else {
+                    document.getElementById('statusMainTitle').innerText = "අයදුම්පත සමාලෝචනය වෙමින් පවතී";
+                    document.getElementById('statusSubText').innerText = "ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී. කරුණාකර රැඳී සිටින්න.";
+                    approvedDetails.classList.add('hidden');
+                }
+            }
+        }
+
+        setInterval(checkStatus, 2000);
+        window.onload = checkStatus;
+    </script>
+</body>
+</html>
