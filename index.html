@@ -286,8 +286,8 @@
         submitBtn.innerText = "යොමු කරමින් පවතී...";
         submitBtn.disabled = true;
 
-        // මෙහි template_tf3mmoe ලෙස නිවැරදි Template ID එක දමා ඇත
-        emailjs.sendForm('service_nhgesv', 'template_tf3mmoe', this)
+        // අලුත් Service ID එක (`service_vl0i3v9`) සහ Template ID එක (`template_tf3mmoe`) මෙහි අඩංගු වේ
+        emailjs.sendForm('service_vl0i3v9', 'template_tf3mmoe', this)
             .then(function() {
                 localStorage.setItem('loan_user_status', 'pending');
                 formContainer.style.display = 'none';
